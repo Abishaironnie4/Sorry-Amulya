@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For Amulya — Starlit Wish</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0e1a;       /* Deep space midnight blue */
+  --ink: #f0f4f8;      /* Starlight soft off-white text */
+  --accent: #b3c5ff;   /* Cosmic blue accent glow */
+  --glow-text: #e2ebff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Nunito', system-ui;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* 🌌 Starfield background effect */
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+  background-size: 550px 550px, 350px 350px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* 💻 Main Layout Container */
+.stage {
+  position: relative;
+  width: min(1100px, 92vw);
+  height: min(600px, 85vh);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 0 40px rgba(179, 197, 255, 0.15);
+}
+
+/* Left Column: Glowing Text Letter Container */
+.left-letter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.left-letter h2 {
+  margin: 0;
+  font-family: 'Baloo 2';
+  font-size: clamp(24px, 3.5vw, 36px);
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  line-height: 1.2;
+}
+
+.left-letter p {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  padding-right: 10px;
+  color: var(--glow-text);
+  text-shadow: 0 0 8px rgba(226, 235, 255, 0.25);
+}
+
+/* Right Column: Lunar Glowing Portrait Frame */
+.right-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: min(320px, 100%);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%; /* Rounded circular lunar frame */
+  overflow: hidden;
+  background: #1e293b center/cover no-repeat;
+  border: 4px solid #fff;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(0,0,0,0.6);
+  transition: transform 0.5s ease;
+}
+
+.nameTag {
+  margin-top: 24px;
+  padding: 8px 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-family: 'Nunito';
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+  text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+/* 🎇 Sparkle Animations */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 24px;
+  opacity: 0;
+  z-index: 1;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
+}
+
+/* 🚪 Gateway Cover Screen */
+.gate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  z-index: 20;
+}
+
+.gateInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.starIcon {
+  font-size: 64px;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.6));
+}
+
+.bob { animation: bob 2.5s ease-in-out infinite; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.03); }
+}
+
+.typeLabel {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  text-align: center;
+}
+
+.nameInput {
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-family: 'Nunito';
+  font-weight: 700;
+  text-align: center;
+  font-size: 16px;
+  width: min(300px, 80vw);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  outline: none;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255,255,255,0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.nameInput:focus {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+</style>
+</head>
+<body>
+
+<div class="starfield"></div>
+<div class="grid" style="opacity: 0.15; filter: invert(1);"></div>
+
+<!-- 🚪 FRONT GATEWAY SCREEN -->
+<div class="gate" id="gate">
+  <div class="gateInner">
+    <div class="starIcon bob">⭐</div>
+    <div class="typeLabel" id="typeLabel"></div>
+    <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
+  </div>
+</div>
+
+<!-- 💻 THE RECONCILIATION LAYOUT -->
+<div class="wrap">
+  <div class="stage" id="scene" style="display:none;">
+    
+    <div class="left-letter">
+      <h2 id="typeTitle"></h2>
+      <p id="typeBody"></p>
+    </div>
+    
+    <div class="right-picture">
+      <div class="avatar">
+        <img src="bestie.png" alt="Amulya" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/1e293b/ffffff?text=%E2%9C%A8'">
+      </div>
+      <div class="nameTag">Amulya 🦋</div>
+    </div>
+
+  </div>
+</div>
+
+<div id="sparkLayer"></div>
+
+<audio id="bgm" src="sorry-song.mp3" loop></audio>
+
+<script>
+const CONFIG = {
+  unlockWord: "sorry", 
+  
+  staticTitle: "🦋 For my sister / friend... I miss you deeply. 🦋",
+  staticBody:
+`I am writing this because finding the right words out loud has been hard, but I couldn't let another day pass without trying to fix what I broke.
+
+I want to say I am incredibly, truly sorry for hurting you. Looking back at how things went down, I realize how much my actions cut deep, and it kills me to know that I am the reason there is silence between us now.
+
+Our friendship means the world to me. You have been my safe space, my partner in crime, and a piece of my life I never want to lose.
+
+I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen. 🌸`,
+
+  sparklesPerSecond: 15, 
+  sparkSet: ["🦋", "✨", "🌸", "🌟", "🎀", "⭐", "☀️", "🌱"] 
+};
+
+function typewrite(el, text, speed=28, done){ 
+  el.textContent=''; let i=0;
+  const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); done&&done();}}, speed);
+}
+
+const sparkLayer = document.getElementById('sparkLayer');
+function sparkle(){
+  const s=document.createElement('div'); s.className='sparkle';
+  s.textContent=CONFIG.sparkSet[Math.floor(Math.random()*CONFIG.sparkSet.length)];
+  s.style.left=Math.random()*innerWidth+'px';
+  s.style.top=Math.random()*innerHeight+'px';
+  s.style.transform=`scale(${0.5+Math.random()*1.2}) rotate(${Math.random()*40-20}deg)`;
+  sparkLayer.appendChild(s);
+  requestAnimationFrame(()=> s.style.transition='opacity .2s ease');
+  s.style.opacity=1;
+  setTimeout(()=> s.style.opacity=0, 400+Math.random()*500);
+  setTimeout(()=> s.remove(), 1200);
+}
+setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
+
+window.addEventListener('DOMContentLoaded', () => {
+  const typeLabel = document.getElementById('typeLabel');
+  typewrite(typeLabel, "Hi Amulya... please enter your password.", 30);
+});
+
+const gate = document.getElementById('gate');
+const nameInput = document.getElementById('nameInput');
+const bgm = document.getElementById('bgm');
+const scene = document.getElementById('scene');
+const typeTitle = document.getElementById('typeTitle'); 
+const typeBody = document.getElementById('typeBody');
+
+nameInput.addEventListener('keydown', (e)=>{
+  if(e.key !== "Enter") return;
+  const v = (nameInput.value || '').trim().toLowerCase();
+  
+  if(v === CONFIG.unlockWord.toLowerCase()){
+    bgm.play().catch(err => console.log("Audio gestured required"));
+    
+    gate.style.transition = "opacity .6s ease"; 
+    gate.style.opacity = 0;
+    
+    setTimeout(()=>{ 
+      gate.style.display = "none"; 
+      scene.style.display = "grid"; 
+      
+      typewrite(typeTitle, CONFIG.staticTitle, 40, () => {
+        typewrite(typeBody, CONFIG.staticBody, 22);
+      });
+    }, 600);
+  } else {
+    const typeLabel = document.getElementById('typeLabel');
+    typewrite(typeLabel, "Please try again... I made this entirely for you.", 25);
+    nameInput.value = ""; 
+  }
+});
+</script>
+</body>
+</html>
