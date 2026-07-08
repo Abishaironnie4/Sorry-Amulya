@@ -3,18 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>I'm Sorry</title>
+<title>For Amulya</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@700;800&family=Poppins:wght=600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@700;800&family=Poppins:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 UPDATED: Calming, warm, and nostalgic color palette */
 :root {
-  --bg: #f5f2eb;       /* Soft warm cream cream/parchment */
+  --bg: #f5f2eb;       /* Soft warm parchment cream */
   --grid: #e6e1d5;     /* Muted grid lines */
   --ink: #2b2b2b;
   --pill: #a3b19b;     /* Healing sage/eucalyptus green */
-  --pill-d: #84937c;   /* Shadow for the button */
+  --pill-d: #84937c;   /* Shadow for accents */
   --ring: #3d443a;     
   --white: #fff;
 }
@@ -30,22 +29,9 @@ html, body {
 
 body {
   background: var(--bg);
-  font-family: 'Baloo 2', system-ui;
+  font-family: 'Nunito', system-ui;
   color: var(--ink);
   overflow: hidden
-}
-
-.video-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: #000;
-}
-
-#introVideo {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
 }
 
 .grid {
@@ -57,34 +43,6 @@ body {
   opacity: .75
 }
 
-/* Muted strings for a softer look */
-.bunting {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 130px;
-  pointer-events: none;
-  z-index: 2
-}
-
-.bunting svg {
-  width: 100%;
-  height: 100%
-}
-
-.string {
-  fill: none;
-  stroke: #cbd5c5;
-  stroke-width: 6;
-  stroke-linecap: round;
-  filter: drop-shadow(0 4px 0 #e1e7dd)
-}
-
-.flag {
-  filter: drop-shadow(0 1px 0 #0002)
-}
-
 .wrap {
   position: relative;
   height: 100%;
@@ -93,286 +51,94 @@ body {
   justify-content: center
 }
 
+/* 💻 Layout - Main Apology split screen */
 .stage {
   position: relative;
-  width: min(1200px, 100vw);
-  height: min(680px, 56.25vw)
+  width: min(1100px, 92vw);
+  height: min(600px, 85vh);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  background: #fdfbf7;
+  border: 4px solid var(--ink);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
 }
 
-.left {
-  position: absolute;
-  left: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+/* Left Column: Letter Title & Body text typing container */
+.left-letter {
   display: flex;
   flex-direction: column;
-  gap: 14px
+  justify-content: flex-start;
+  gap: 16px;
+  overflow: hidden;
 }
 
-.right {
-  position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%)
+.left-letter h2 {
+  margin: 0;
+  font-family: 'Baloo 2';
+  font-size: clamp(24px, 3.5vw, 36px);
+  color: var(--ring);
+  line-height: 1.2;
 }
 
-.row {
+.left-letter p {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  padding-right: 10px;
+  color: #3d3d3d;
+}
+
+/* Right Column: Avatar picture framing */
+.right-picture {
   display: flex;
-  gap: 4px;
-  align-items: flex-end;
-  flex-wrap: wrap
-}
-
-.tile {
-  display: grid;
-  place-items: center;
-  min-width: 58px;
-  padding: 4px 10px;
-  background: linear-gradient(#fff, #fdfbf7);
-  border: 4px solid var(--ink);
-  border-radius: 14px;
-  box-shadow: 0 8px 0 #0001;
-  font-size: clamp(36px, 6.6vw, 92px);
-  line-height: 1;
-  font-weight: 800;
-  color: var(--ink);
-  transform: translateY(40px);
-  opacity: 0;
-  letter-spacing: -0.02em
-}
-
-.coral {
-  display: inline-block;
-  font-size: clamp(36px, 6.6vw, 92px);
-  font-weight: 800;
-  color: var(--pill);
-  -webkit-text-stroke: 3px var(--ink);
-  filter: drop-shadow(0 6px 0 #0001);
-  transform: translateY(40px);
-  opacity: 0;
-  letter-spacing: -0.03em
-}
-
-.cake {
-  display: inline-block;
-  margin-left: .5rem;
-  font-size: clamp(30px, 4.2vw, 48px);
-  transform-origin: 50% 100%;
-  animation: cakeWiggle 2.2s ease-in-out infinite
-}
-
-@keyframes cakeWiggle {
-  0%, 100% { transform: translateY(0) rotate(-4deg) }
-  50% { transform: translateY(-3px) rotate(4deg) }
-}
-
-.hat {
-  position: absolute;
-  width: clamp(36px, 5.6vw, 72px);
-  height: clamp(36px, 5.6vw, 72px);
-  left: 58%;
-  top: -24%;
-  transform-origin: 30% 90%;
-  animation: hatSlide 2.6s ease-in-out infinite
-}
-
-@keyframes hatSlide {
-  0%, 100% { transform: translateX(-4px) rotate(8deg) }
-  50% { transform: translateX(3px) rotate(12deg) }
-}
-
-.pill {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 14px 26px;
-  border-radius: 999px;
-  background: var(--pill);
-  color: #fff;
-  border: 3px solid var(--ink);
-  box-shadow: 0 8px 0 #0001, inset 0 -5px 0 var(--pill-d);
-  font-family: 'Nunito';
-  font-weight: 900;
-  cursor: pointer
+  justify-content: center;
+  position: relative;
 }
 
 .avatar {
-  width: clamp(250px, 34vw, 360px);
-  height: clamp(250px, 34vw, 360px);
-  border-radius: 50%;
+  width: min(320px, 100%);
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
   overflow: hidden;
-  background: #ddd center/cover no-repeat;
-  border: 8px solid var(--ring);
-  box-shadow: 0 18px 40px #0001;
-  transform: scale(.86);
-  opacity: 0
+  background: #e6e1d5 center/cover no-repeat;
+  border: 6px solid var(--ring);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 .nameTag {
-  position: absolute;
-  bottom: -34px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 22px;
+  margin-top: 20px;
+  padding: 10px 24px;
   border-radius: 999px;
   background: var(--pill);
   color: #fff;
   border: 3px solid var(--ink);
   font-family: 'Nunito';
-  font-weight: 900;
-  box-shadow: 0 8px 0 #0001, inset 0 -5px 0 var(--pill-d);
-  opacity: 0
+  font-weight: 800;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.05);
 }
 
+/* 🎇 Floating calm sparkles - NO HEARTS */
 .sparkle {
   position: fixed;
   pointer-events: none;
-  font-size: 28px;
+  font-size: 26px;
   opacity: 0;
-  text-shadow: 0 0 10px #fff;
+  text-shadow: 0 0 10px #fff6, 0 0 18px #fff;
   z-index: 1
 }
 
-.modalBack {
-  position: fixed;
-  inset: 0;
-  background: #0004;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 30
-}
-
-.card {
-  width: min(900px, 94vw);
-  background: #fdfbf7;
-  color: #2b2b2b;
-  border-radius: 22px;
-  border: 6px solid #fff;
-  outline: 4px solid var(--ink);
-  padding: 24px;
-  box-shadow: 0 18px 40px #0002;
-  position: relative
-}
-
-.closeX {
-  position: absolute;
-  right: 12px;
-  top: 10px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--ink);
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  cursor: pointer;
-  z-index: 31;
-}
-
-.post {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 20px;
-  min-height: 400px;
-  position: relative;
-}
-
-.leftSticker {
-  background: #f4f1ea;
-  border: 3px solid var(--ink);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-#mediaDisplay {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.leftSticker .media-content {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-}
-
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  font-size: 20px;
-  font-weight: 900;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 4px 0 #0001;
-  transition: transform 0.1s ease;
-}
-
-.nav-arrow:active {
-  transform: translateY(-50%) scale(0.95);
-  box-shadow: none;
-}
-
-#prevBtn { left: 10px; }
-#nextBtn { right: 10px; }
-
-.rightMsg {
-  border-left: 3px solid var(--grid);
-  padding: 4px 4px 4px 20px;
-  font-family: 'Nunito';
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.big-emoji {
-  font-size: 64px;
-  text-align: center;
-}
-
-.rightMsg h3 {
-  margin: 0;
-  font-family: 'Baloo 2';
-  font-size: 24px;
-  text-align: center;
-  line-height: 1.3;
-}
-
-.rightMsg p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  overflow-y: auto;
-  max-height: 280px; /* Limits size so it stays clean with a scrollbar */
-  padding-right: 5px;
-}
-
+/* 🚪 Front Door: Password Screen */
 .gate {
   position: fixed;
   inset: 0;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg);
@@ -383,468 +149,180 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px
+  gap: 24px
 }
 
-.giftWrap {
+.envelopeWrap {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px
 }
 
-.giftImg {
-  width: 220px;
-  height: 220px;
-  border-radius: 30px;
+.envelopeImg {
+  width: 180px;
+  height: 180px;
+  border-radius: 24px;
   overflow: hidden;
-  position: relative;
   background: var(--pill) center/cover no-repeat;
   border: 4px solid var(--ink);
-  box-shadow: 0 12px 0 #0001
-}
-
-.giftImg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block
+  box-shadow: 0 12px 0 rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bob { animation: bob 2.2s ease-in-out infinite }
-
 @keyframes bob {
   0%, 100% { transform: translateY(0) }
   50% { transform: translateY(6px) }
 }
 
-.sheen {
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  background: linear-gradient(120deg, #ffffff44 0 10%, transparent 10% 60%, #ffffff22 60% 68%, transparent 68% 100%);
-  mix-blend-mode: screen;
-  animation: sheen 2.8s linear infinite
-}
-
-@keyframes sheen {
-  0% { background-position: -200% 0 }
-  100% { background-position: 200% 0 }
-}
-
-.openArc {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 100px;
-  pointer-events: none
-}
-
-.openArc text {
-  font-family: 'Monotype Corsiva', 'Great Vibes', 'Segoe Script', cursive;
-  fill: var(--ink);
-  font-size: 30px;
-  filter: drop-shadow(0 2px 0 #fff)
-}
-
-.openArc g { animation: pulseZoom 1.6s ease-in-out infinite }
-
-@keyframes pulseZoom {
-  0%, 100% { transform: scale(1) }
-  50% { transform: scale(1.05) }
-}
-
 .typeLabel {
-  font-family: 'Nunito', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
   background: #fff;
   border: 3px solid var(--ink);
-  padding: 10px 18px;
-  border-radius: 14px;
-  box-shadow: 0 8px 0 #0001;
+  padding: 12px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.04);
   text-align: center;
+  min-width: 280px;
 }
 
 .nameInput {
-  padding: 12px 14px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 14px;
   border: 3px solid var(--ink);
   font-family: 'Nunito';
   font-weight: 800;
   text-align: center;
-  width: min(360px, 80vw);
-  background: #fff
+  font-size: 16px;
+  width: min(320px, 85vw);
+  background: #fff;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 </style>
 </head>
 <body>
 
-<!-- 🎬 Optional: If you have an intro video playing first. If not, it moves directly to the password gate. -->
-<div class="video-overlay" id="videoOverlay">
-    <video id="introVideo" autoplay muted playsinline>
-        <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-
 <div class="grid"></div>
 
-<!-- Muted custom top banner strings -->
-<div class="bunting">
-  <svg viewBox="0 0 1200 130" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="triSage" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#cbd5c5"/><stop offset="1" stop-color="#a3b19b"/>
-      </linearGradient>
-      <polygon id="tri" class="flag" points="0,0 26,0 13,30" fill="url(#triSage)"/>
-      <polygon id="triL" class="flag" points="0,0 26,0 13,30" fill="#f0ede6"/>
-    </defs>
-
-    <path id="leftStr"  class="string" d="M-40,78 Q260,12 520,70" />
-    <path id="rightStr" class="string" d="M680,70 Q940,12 1240,78" />
-
-    <g>
-      <use href="#tri"  transform="translate(10,66) rotate(-6)"/>
-      <use href="#triL" transform="translate(50,62) rotate(-7)"/>
-      <use href="#tri"  transform="translate(90,60) rotate(-8)"/>
-      <use href="#triL" transform="translate(130,58) rotate(-9)"/>
-      <use href="#tri"  transform="translate(170,56) rotate(-10)"/>
-      <use href="#triL" transform="translate(210,55) rotate(-11)"/>
-      <use href="#tri"  transform="translate(250,54) rotate(-12)"/>
-      <use href="#triL" transform="translate(290,54) rotate(-13)"/>
-    </g>
-
-    <g>
-      <use href="#tri"  transform="translate(860,56) rotate(12)"/>
-      <use href="#triL" transform="translate(900,55) rotate(13)"/>
-      <use href="#tri"  transform="translate(940,54) rotate(14)"/>
-      <use href="#triL" transform="translate(980,55) rotate(15)"/>
-      <use href="#tri"  transform="translate(1020,56) rotate(16)"/>
-      <use href="#triL" transform="translate(1060,58) rotate(17)"/>
-      <use href="#tri"  transform="translate(1100,60) rotate(18)"/>
-      <use href="#triL" transform="translate(1140,63) rotate(19)"/>
-    </g>
-  </svg>
-</div>
-
-<!-- Password Gate Screen -->
 <div class="gate" id="gate">
   <div class="gateInner">
-    <div class="giftWrap">
-      <svg class="openArc" viewBox="0 0 260 100">
-        <defs><path id="arcPath" d="M20,80 Q130,18 240,80"/></defs>
-        <g><text><textPath href="#arcPath" startOffset="50%" text-anchor="middle">Open letter ✉️</textPath></text></g>
-      </svg>
-
-      <div class="giftImg bob" id="giftBox">
-        <!-- 💡 Replace with an envelope or a nice image name -->
-        <img src="envelope.jpg" alt="Letter" onerror="this.src='https://placehold.co/220x220/a3b19b/ffffff?text=%E2%9C%89%EF%B8%8F'">
-        <div class="sheen"></div>
+    <div class="envelopeWrap bob">
+      <div class="envelopeImg">
+         <img src="envelope.jpg" alt="Letter Envelope" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-size:70px;\'>✉️</span>';">
       </div>
     </div>
 
     <div class="typeLabel" id="typeLabel"></div>
-    <input class="nameInput" id="nameInput" placeholder="Type password here..." />
+    <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
   </div>
 </div>
 
-<!-- Main UI Scene -->
 <div class="wrap">
-  <div class="stage" id="scene" style="visibility:hidden">
-    <div class="left">
-      <div class="row" id="rowHappy"></div>
-      <div class="row" id="rowBirth"></div>
-      <div class="pill" id="openCard">🕊️ Click to open my letter to you 🕊️</div>
+  <div class="stage" id="scene" style="display:none;">
+    
+    <div class="left-letter">
+      <h2 id="typeTitle"></h2>
+      <p id="typeBody"></p>
     </div>
-    <div class="right">
-      <!-- 💡 Replace bestie.png with their photo or a picture of both of you -->
-      <div class="avatar" id="avatar"><img src="bestie.png" alt="Friend" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/84937c/ffffff?text=%F0%9F%A4%9D'"></div>
-      <div class="nameTag" id="nameTag"><span class="bestieName">Friend</span> 🤍</div>
+    
+    <div class="right-picture">
+      <div class="avatar">
+        <img src="bestie.png" alt="Amulya" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/84937c/ffffff?text=%F0%9F%A4%9D'">
+      </div>
+      <div class="nameTag">Amulya 🦋</div>
     </div>
+
   </div>
 </div>
 
 <div id="sparkLayer"></div>
 
-<!-- Memory Slide Modal -->
-<div class="modalBack" id="modal">
-  <div class="card" role="dialog" aria-modal="true">
-    <button class="closeX" id="closeX">✕</button>
-    
-    <div class="post">
-      <div class="leftSticker">
-        <div id="mediaDisplay"></div>
-        <button class="nav-arrow" id="prevBtn">❮</button>
-        <button class="nav-arrow" id="nextBtn">❯</button>
-      </div>
-
-      <div class="rightMsg">
-        <div class="big-emoji">🫂</div>
-        <h3 id="typeTitle"></h3>
-        <p id="typeBody"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 🎵 Your Sentimental Background Song -->
 <audio id="bgm" src="sorry-song.mp3" loop></audio>
 
 <script>
-/* =========================================================
-   🔧 CUSTOMIZE EVERYTHING IN THIS CONFIG BLOCK BELOW
-   ========================================================= */
 const CONFIG = {
-  bestieName: "Their Name",                       // Friend's Name
-  unlockWord: "sorry",                            // Password to type in at the front gate
-  happy: "I Am",                                  // Floating block word line 1
-  birthday: "Sorry",                              // Floating cursive text line 2
+  unlockWord: "sorry", // 🔐 Change this to the password you want her to type
   
-  // ✉️ The main apology title and text block letter
-  staticTitle: "🤍 For my favorite person... I miss you deeply. 🤍",
+  staticTitle: "🦋 For my sister / friend... I miss you deeply. 🦋",
   staticBody:
 `I am writing this because finding the right words out loud has been hard, but I couldn't let another day pass without trying to fix what I broke.
 
 I want to say I am incredibly, truly sorry for hurting you. Looking back at how things went down, I realize how much my actions cut deep, and it kills me to know that I am the reason there is silence between us now.
 
-Our friendship means the world to me. These pictures on the left aren't just files; they are some of the happiest moments of my life, and they all happened because of you. You have been my safe space, my partner in crime, and a piece of my life I never want to lose.
+Our friendship means the world to me. You have been my safe space, my partner in crime, and a piece of my life I never want to lose.
 
-I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen. 🤍`,
+I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen. 🌸`,
 
-  sparklesPerSecond: 8, // Soft, gentle floating rate
-  sparkSet: ["✨","🤍","🌱","⭐","🩹","🌸","🫂"], // Peaceful emojis
-  
-  // 📸 Chronological timeline order of pictures/videos (up to 10 files)
-  galleryItems: [
-    { type: "image", src: "pic1.jpg" }, 
-    { type: "image", src: "pic2.jpg" }, 
-    { type: "image", src: "pic3.jpg" }, 
-    { type: "image", src: "pic4.jpg" }, 
-    { type: "image", src: "pic5.jpg" },
-    { type: "image", src: "pic6.jpg" }, 
-    { type: "image", src: "pic7.jpg" }, 
-    { type: "image", src: "pic8.jpg" }, 
-    { type: "image", src: "pic9.jpg" }, 
-    { type: "video", src: "shared-moment.mp4" } // Final slot can be a video clip
-  ]
+  sparklesPerSecond: 18, 
+  // 🦋 UPDATED: Added butterflies, ribbons, cherry blossoms, and classic sparkles
+  sparkSet: ["🦋", "✨", "🌸", "🌟", "🎀", "⭐", "☀️", "🌱"] 
 };
 
-/* =========================================================
-   ⚙️ CORE FUNCTIONALITY MECHANICS (Do not modify)
-   ========================================================= */
+/* ===== Typewriter Function ===== */
 function typewrite(el, text, speed=28, done){ 
   el.textContent=''; let i=0;
   const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); done&&done();}}, speed);
 }
 
+/* ===== High-Density Sparkle Engine ===== */
 const sparkLayer = document.getElementById('sparkLayer');
 function sparkle(){
   const s=document.createElement('div'); s.className='sparkle';
   s.textContent=CONFIG.sparkSet[Math.floor(Math.random()*CONFIG.sparkSet.length)];
   s.style.left=Math.random()*innerWidth+'px';
   s.style.top=Math.random()*innerHeight+'px';
-  s.style.transform=`scale(${0.6+Math.random()*1.2}) rotate(${Math.random()*30-15}deg)`;
+  s.style.transform=`scale(${0.6+Math.random()*1.3}) rotate(${Math.random()*40-20}deg)`;
   sparkLayer.appendChild(s);
-  requestAnimationFrame(()=> s.style.transition='opacity .2s ease');
+  requestAnimationFrame(()=> s.style.transition='opacity .16s ease');
   s.style.opacity=1;
-  setTimeout(()=> s.style.opacity=0, 400+Math.random()*600);
-  setTimeout(()=> s.remove(), 1300);
+  setTimeout(()=> s.style.opacity=0, 360+Math.random()*520);
+  setTimeout(()=> s.remove(), 1200);
 }
 setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
 
-const bgm=document.getElementById('bgm');
-function tryPlay(){ bgm.play().catch(()=>{}); }
-tryPlay(); 
-['click','touchstart','keydown'].forEach(evt=>document.addEventListener(evt,tryPlay,{once:false}));
+/* ===== Initial Load Action ===== */
+window.addEventListener('DOMContentLoaded', () => {
+  const typeLabel = document.getElementById('typeLabel');
+  typewrite(typeLabel, "Hi Amulya... please enter your password.", 30);
+});
 
-const videoOverlay = document.getElementById('videoOverlay');
-const introVideo = document.getElementById('introVideo');
+/* ===== Password Gate Logic Handler ===== */
 const gate = document.getElementById('gate');
-const typeLabel = document.getElementById('typeLabel');
 const nameInput = document.getElementById('nameInput');
+const bgm = document.getElementById('bgm');
+const scene = document.getElementById('scene');
+const typeTitle = document.getElementById('typeTitle'); 
+const typeBody = document.getElementById('typeBody');
 
-function playIntroVideo() {
-    introVideo.play().catch(e => {
-        // If there's no intro video present, bypass immediately to gate
-        videoOverlay.style.display = 'none';
-        gate.style.display = 'flex';
-        typewrite(typeLabel, "I know things are rough right now... please type the password so you can see what I made.", 25);
-    });
-}
-
-introVideo.onended = () => {
-    videoOverlay.style.transition = "opacity .5s ease";
-    videoOverlay.style.opacity = 0;
-    setTimeout(() => {
-        videoOverlay.style.display = 'none';
-        gate.style.display = 'flex';
-        typewrite(typeLabel, "I know things are rough right now... please type the password so you can see what I made.", 25);
-    }, 500);
-};
-playIntroVideo(); 
-
-let wrong = 0;
 nameInput.addEventListener('keydown', (e)=>{
-  if(e.key!=="Enter") return;
-  const v = (nameInput.value||'').trim().toLowerCase();
+  if(e.key !== "Enter") return;
+  const v = (nameInput.value || '').trim().toLowerCase();
+  
   if(v === CONFIG.unlockWord.toLowerCase()){
-    gate.style.transition="opacity .45s ease"; gate.style.opacity=0;
-    setTimeout(()=>{ gate.style.display="none"; startScene(); }, 450);
-  }else{
-    wrong++;
-    typeLabel.textContent = wrong===1 ? "That's not the password... try our mutual inside joke/word."
-                                      : "Please try again... I really spent a long time making this for us.";
+    bgm.play().catch(err => console.log("Audio play gesture required"));
+    
+    gate.style.transition = "opacity .5s ease"; 
+    gate.style.opacity = 0;
+    
+    setTimeout(()=>{ 
+      gate.style.display = "none"; 
+      scene.style.display = "grid"; 
+      
+      typewrite(typeTitle, CONFIG.staticTitle, 40, () => {
+        typewrite(typeBody, CONFIG.staticBody, 22);
+      });
+    }, 500);
+  } else {
+    const typeLabel = document.getElementById('typeLabel');
+    typewrite(typeLabel, "Please try again... I made this entirely for you.", 25);
     nameInput.value = ""; 
   }
 });
-
-const rowHappy = document.getElementById('rowHappy');
-const rowBirth = document.getElementById('rowBirth');
-
-function buildWord(container, word, style){
-  container.innerHTML='';
-  [...word].forEach(ch=>{
-    const span=document.createElement('span');
-    span.className=style;
-    span.textContent= ch===' ' ? '\u00A0' : ch;
-    container.appendChild(span);
-  });
-}
-
-function animateWord(container, placeHatOnY=false){
-  const letters=[...container.children];
-  letters.forEach((el,i)=>{
-    setTimeout(()=>{
-      el.style.transition="transform .55s cubic-bezier(.17,.67,.27,1.35), opacity .5s";
-      el.style.transform="translateY(0)"; el.style.opacity=1;
-      setTimeout(()=>el.style.transform="translateY(-4px)",520);
-      setTimeout(()=>el.style.transform="translateY(0)",740);
-
-      if(placeHatOnY && el.textContent.toLowerCase()==='y'){
-        const hat=document.createElementNS("http://www.w3.org/2000/svg","svg");
-        hat.setAttribute("viewBox","0 0 100 100"); hat.classList.add("hat");
-        hat.innerHTML=`<defs>
-            <linearGradient id="cone" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#84937c"/><stop offset="1" stop-color="#cbd5c5"/>
-            </linearGradient>
-            <filter id="hshadow"><feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#000" flood-opacity=".15"/></filter>
-          </defs>
-          <polygon points="50,6 92,92 8,92" fill="url(#cone)" stroke="#2b2b2b" stroke-width="6" filter="url(#hshadow)"/>
-          <circle cx="92" cy="8" r="10" fill="#2b2b2b"/>`;
-        el.style.position='relative'; el.appendChild(hat);
-      }
-    }, 110*i);
-  });
-}
-
-const avatar = document.getElementById('avatar');
-const nameTag = document.getElementById('nameTag');
-
-function startScene(){
-    buildWord(rowHappy, CONFIG.happy, 'tile');
-    buildWord(rowBirth, CONFIG.birthday, 'coral');
-
-    const cake = document.createElement('span');
-    cake.className = 'cake';
-    cake.textContent = '🌱';
-    rowBirth.appendChild(cake);
-
-    document.querySelector('.bestieName').textContent = CONFIG.bestieName;
-    avatar.querySelector('img').src = "bestie.png";
-
-    document.getElementById('scene').style.visibility='visible';
-
-    animateWord(rowHappy, false); 
-    setTimeout(()=>animateWord(rowBirth, false), 110*CONFIG.happy.length + 240);
-
-    setTimeout(()=>{
-      avatar.style.transition="transform 1s ease, opacity 1s ease";
-      nameTag.style.transition="opacity .8s ease .3s";
-      avatar.style.transform="scale(1)"; avatar.style.opacity=1; nameTag.style.opacity=1;
-    }, 110*(CONFIG.happy.length+CONFIG.birthday.length) + 700);
-}
-
-const modal=document.getElementById('modal'); 
-const openCard=document.getElementById('openCard');
-const closeX=document.getElementById('closeX'); 
-const mediaDisplay = document.getElementById('mediaDisplay'); 
-const typeTitle = document.getElementById('typeTitle'); 
-const typeBody = document.getElementById('typeBody');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-let currentSlide = 0;
-let messageTyped = false;
-
-function updateGallery(index) {
-  const item = CONFIG.galleryItems[index];
-  mediaDisplay.innerHTML = '';
-  let mediaElement;
-
-  if (item.type === "image") {
-      mediaElement = document.createElement('img');
-      mediaElement.src = item.src;
-      mediaElement.alt = `Memory Slide ${index + 1}`;
-      mediaElement.classList.add('media-content');
-      // Graceful fallback display if image doesn't exist locally yet
-      mediaElement.onerror = function() {
-         this.src = `https://placehold.co/400x400/f4f1ea/2b2b2b?text=Memory+Photo+${index + 1}`;
-      };
-      
-  } else if (item.type === "video") {
-      mediaElement = document.createElement('video');
-      mediaElement.src = item.src;
-      mediaElement.classList.add('media-content');
-      mediaElement.autoplay = true;
-      mediaElement.loop = true;
-      mediaElement.controls = true;
-  }
-
-  mediaDisplay.appendChild(mediaElement);
-  
-  prevBtn.disabled = index === 0;
-  nextBtn.disabled = index === CONFIG.galleryItems.length - 1;
-  prevBtn.style.opacity = index === 0 ? 0.2 : 1;
-  nextBtn.style.opacity = index === CONFIG.galleryItems.length - 1 ? 0.2 : 1;
-}
-
-openCard.addEventListener('click', ()=>{
-  modal.style.display='flex';
-  currentSlide = 0; 
-  updateGallery(currentSlide);
-  
-  if (!messageTyped) {
-    typeTitle.textContent = ''; 
-    typeBody.textContent = ''; 
-    typewrite(typeTitle, CONFIG.staticTitle, 42, () => {
-      typewrite(typeBody, CONFIG.staticBody, 18, () => {
-        messageTyped = true;
-      });
-    });
-  }
-});
-
-prevBtn.addEventListener('click', () => {
-  if (currentSlide > 0) {
-    currentSlide--;
-    updateGallery(currentSlide);
-  }
-});
-
-nextBtn.addEventListener('click', () => {
-  if (currentSlide < CONFIG.galleryItems.length - 1) {
-    currentSlide++;
-    updateGallery(currentSlide);
-  }
-});
-
-closeX.addEventListener('click', ()=> modal.style.display='none');
-modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.style.display='none';});
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.style.display==='flex') modal.style.display='none';});
 </script>
 </body>
 </html>
