@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>For Amulya — Starlit Wish</title>
+<title>For Amulya — Blooming Storybook</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #0a0e1a;       /* Deep space midnight blue */
-  --ink: #f0f4f8;      /* Starlight soft off-white text */
-  --accent: #b3c5ff;   /* Cosmic blue accent glow */
-  --glow-text: #e2ebff;
+  --bg: #eae3d2;       /* Warm vintage organic paper brown */
+  --book-sheet: #fbf9f3;/* Elegant warm cotton journal sheet */
+  --ink: #2d261d;      /* Deep sepia charcoal ink styling */
+  --accent: #8b9a86;   /* Earthy sage leaf tone */
 }
 
 * {
@@ -28,17 +28,12 @@ html, body {
   overflow: hidden;
 }
 
-/* 🌌 Starfield background effect */
-.starfield {
+.grid {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: 
-    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-  background-size: 550px 550px, 350px 350px;
-  background-position: 0 0, 40px 60px;
-  opacity: 0.4;
+  background: linear-gradient(to right, rgba(45,38,29,0.03) 1px, transparent 1px) 0 0/30px 30px,
+              linear-gradient(to bottom, rgba(45,38,29,0.03) 1px, transparent 1px) 0 0/30px 30px;
   z-index: 0;
 }
 
@@ -51,94 +46,122 @@ html, body {
   z-index: 2;
 }
 
-/* 💻 Main Layout Container */
+/* 📖 Main Layout - Two page open notebook book block */
 .stage {
   position: relative;
-  width: min(1100px, 92vw);
-  height: min(600px, 85vh);
+  width: min(1150px, 94vw);
+  height: min(620px, 85vh);
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-  background: rgba(15, 23, 42, 0.65);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 0 40px rgba(179, 197, 255, 0.15);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 0;
+  background: var(--book-sheet);
+  border: 2px solid #c9beaa;
+  border-radius: 6px;
+  box-shadow: 0 15px 45px rgba(45, 38, 29, 0.15), 
+              inset 30px 0 50px rgba(0,0,0,0.02),
+              inset -30px 0 50px rgba(0,0,0,0.02);
+  padding: 50px;
 }
 
-/* Left Column: Glowing Text Letter Container */
+/* Vintage center-spine book fold partition split crease */
+.stage::after {
+  content: '';
+  position: absolute;
+  left: 57.5%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
 .left-letter {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 16px;
   overflow: hidden;
+  padding-right: 40px;
 }
 
 .left-letter h2 {
   margin: 0;
-  font-family: 'Baloo 2';
-  font-size: clamp(24px, 3.5vw, 36px);
-  color: #fff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-  line-height: 1.2;
+  font-family: 'Special Elite', cursive; /* Typewriter font accent */
+  font-size: clamp(22px, 3vw, 30px);
+  color: #4a3e31;
+  line-height: 1.3;
 }
 
 .left-letter p {
   margin: 0;
-  font-size: clamp(15px, 2vw, 18px);
-  line-height: 1.7;
+  font-family: 'Special Elite', cursive;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.8;
   white-space: pre-wrap;
   overflow-y: auto;
-  padding-right: 10px;
-  color: var(--glow-text);
-  text-shadow: 0 0 8px rgba(226, 235, 255, 0.25);
+  padding-right: 15px;
+  color: #3b3227;
 }
 
-/* Right Column: Lunar Glowing Portrait Frame */
 .right-picture {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 40px;
+}
+
+/* 🖼️ Polaroid Craft Frame Concept styling structure */
+.polaroid {
+  background: #fff;
+  padding: 16px 16px 36px 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: rotate(3deg);
+  position: relative;
+  width: min(300px, 100%);
+  border: 1px solid #eee;
+}
+
+/* Washi tape mockup graphic overlay decorations */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 35%;
+  width: 90px;
+  height: 25px;
+  background: rgba(218, 211, 191, 0.6);
+  backdrop-filter: blur(1px);
+  transform: rotate(-4deg);
+  border-left: 2px dashed rgba(0,0,0,0.05);
+  border-right: 2px dashed rgba(0,0,0,0.05);
 }
 
 .avatar {
-  width: min(320px, 100%);
+  width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 50%; /* Rounded circular lunar frame */
   overflow: hidden;
-  background: #1e293b center/cover no-repeat;
-  border: 4px solid #fff;
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(0,0,0,0.6);
-  transition: transform 0.5s ease;
+  background: #f0ede6;
+  border: 1px solid #e2ded5;
 }
 
 .nameTag {
-  margin-top: 24px;
-  padding: 8px 24px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  font-family: 'Nunito';
-  font-weight: 700;
-  backdrop-filter: blur(4px);
-  text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  margin-top: 15px;
+  font-family: 'Special Elite', cursive;
+  font-size: 18px;
+  text-align: center;
+  color: #554a3c;
 }
 
-/* 🎇 Sparkle Animations */
 .sparkle {
   position: fixed;
   pointer-events: none;
-  font-size: 24px;
+  font-size: 26px;
   opacity: 0;
   z-index: 1;
-  filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
 }
 
-/* 🚪 Gateway Cover Screen */
+/* 🚪 front gate logic block styles */
 .gate {
   position: fixed;
   inset: 0;
@@ -153,67 +176,56 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
 }
 
-.starIcon {
-  font-size: 64px;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.6));
+.bookIcon {
+  font-size: 70px;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.06));
 }
 
-.bob { animation: bob 2.5s ease-in-out infinite; }
+.bob { animation: bob 2.2s ease-in-out infinite; }
 @keyframes bob {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.03); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 .typeLabel {
-  font-family: 'Baloo 2', sans-serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  font-family: 'Special Elite', sans-serif;
+  font-size: 22px;
+  color: var(--ink);
   text-align: center;
+  max-width: 400px;
 }
 
 .nameInput {
-  padding: 14px 20px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  font-family: 'Nunito';
-  font-weight: 700;
+  padding: 12px 15px;
+  border-radius: 4px;
+  border: 2px solid #bdae93;
+  font-family: 'Special Elite';
   text-align: center;
   font-size: 16px;
-  width: min(300px, 80vw);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  width: min(320px, 85vw);
+  background: #fdfbf7;
+  color: var(--ink);
   outline: none;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(255,255,255,0.05);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.nameInput:focus {
-  border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 </style>
 </head>
 <body>
 
-<div class="starfield"></div>
-<div class="grid" style="opacity: 0.15; filter: invert(1);"></div>
+<div class="grid"></div>
 
-<!-- 🚪 FRONT GATEWAY SCREEN -->
+<!-- 🚪 FRONT DIALOG LAYER PASS GATEWAY -->
 <div class="gate" id="gate">
   <div class="gateInner">
-    <div class="starIcon bob">⭐</div>
+    <div class="bookIcon bob">📖</div>
     <div class="typeLabel" id="typeLabel"></div>
     <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
   </div>
 </div>
 
-<!-- 💻 THE RECONCILIATION LAYOUT -->
+<!-- 💻 MAIN GRAPHIC JOURNAL INNER CONTENT LAYOUT LAYER -->
 <div class="wrap">
   <div class="stage" id="scene" style="display:none;">
     
@@ -223,10 +235,12 @@ html, body {
     </div>
     
     <div class="right-picture">
-      <div class="avatar">
-        <img src="bestie.png" alt="Amulya" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/1e293b/ffffff?text=%E2%9C%A8'">
+      <div class="polaroid">
+        <div class="avatar">
+          <img src="bestie.png" alt="Amulya" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/f0ede6/2d261d?text=%F0%9F%A6%8B'">
+        </div>
+        <div class="nameTag">Amulya 🌸</div>
       </div>
-      <div class="nameTag">Amulya 🦋</div>
     </div>
 
   </div>
@@ -240,7 +254,7 @@ html, body {
 const CONFIG = {
   unlockWord: "sorry", 
   
-  staticTitle: "🦋 For my sister / friend... I miss you deeply. 🦋",
+  staticTitle: "Dear Amulya...",
   staticBody:
 `I am writing this because finding the right words out loud has been hard, but I couldn't let another day pass without trying to fix what I broke.
 
@@ -248,13 +262,13 @@ I want to say I am incredibly, truly sorry for hurting you. Looking back at how 
 
 Our friendship means the world to me. You have been my safe space, my partner in crime, and a piece of my life I never want to lose.
 
-I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen. 🌸`,
+I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen.`,
 
-  sparklesPerSecond: 15, 
+  sparklesPerSecond: 12, 
   sparkSet: ["🦋", "✨", "🌸", "🌟", "🎀", "⭐", "☀️", "🌱"] 
 };
 
-function typewrite(el, text, speed=28, done){ 
+function typewrite(el, text, speed=35, done){ // Slightly slower type rate for typewriter aesthetic profile match
   el.textContent=''; let i=0;
   const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); done&&done();}}, speed);
 }
@@ -265,12 +279,12 @@ function sparkle(){
   s.textContent=CONFIG.sparkSet[Math.floor(Math.random()*CONFIG.sparkSet.length)];
   s.style.left=Math.random()*innerWidth+'px';
   s.style.top=Math.random()*innerHeight+'px';
-  s.style.transform=`scale(${0.5+Math.random()*1.2}) rotate(${Math.random()*40-20}deg)`;
+  s.style.transform=`scale(${0.6+Math.random()*1.2}) rotate(${Math.random()*30-15}deg)`;
   sparkLayer.appendChild(s);
   requestAnimationFrame(()=> s.style.transition='opacity .2s ease');
-  s.style.opacity=1;
-  setTimeout(()=> s.style.opacity=0, 400+Math.random()*500);
-  setTimeout(()=> s.remove(), 1200);
+  s.style.opacity = 0.8;
+  setTimeout(()=> s.style.opacity=0, 500+Math.random()*400);
+  setTimeout(()=> s.remove(), 1300);
 }
 setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
 
@@ -291,19 +305,19 @@ nameInput.addEventListener('keydown', (e)=>{
   const v = (nameInput.value || '').trim().toLowerCase();
   
   if(v === CONFIG.unlockWord.toLowerCase()){
-    bgm.play().catch(err => console.log("Audio gestured required"));
+    bgm.play().catch(err => console.log("Audio required user token check active"));
     
-    gate.style.transition = "opacity .6s ease"; 
+    gate.style.transition = "opacity .5s ease"; 
     gate.style.opacity = 0;
     
     setTimeout(()=>{ 
       gate.style.display = "none"; 
       scene.style.display = "grid"; 
       
-      typewrite(typeTitle, CONFIG.staticTitle, 40, () => {
-        typewrite(typeBody, CONFIG.staticBody, 22);
+      typewrite(typeTitle, CONFIG.staticTitle, 45, () => {
+        typewrite(typeBody, CONFIG.staticBody, 25);
       });
-    }, 600);
+    }, 500);
   } else {
     const typeLabel = document.getElementById('typeLabel');
     typewrite(typeLabel, "Please try again... I made this entirely for you.", 25);
