@@ -10,7 +10,7 @@
 <style>
 :root {
   --bg: #fbf6ee;         /* warm cream */
-  --ink: #5a5145;        /* soft brown ink, not harsh black */
+  --ink: #5a5145;        /* soft brown ink */
   --pill: #c98a9c;       /* dusty rose */
   --pill-d: #a86b7d;     /* deeper rose for shadow/accents */
   --ring: #6b5c4b;       /* soft brown border */
@@ -24,7 +24,8 @@
 
 html, body {
   height: 100%;
-  margin: 0
+  margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -35,7 +36,6 @@ body {
     var(--bg);
   font-family: 'Quicksand', system-ui;
   color: var(--ink);
-  overflow: hidden
 }
 
 .wrap {
@@ -43,10 +43,11 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  z-index: 2;
 }
 
-/* 🌸 Layout - Main Apology split screen (watercolor paper feel) */
+/* 🌸 Layout - Main Apology split screen */
 .stage {
   position: relative;
   width: min(1100px, 92vw);
@@ -62,7 +63,7 @@ body {
   transform: rotate(-0.35deg);
 }
 
-/* Left Column: Letter Title & Body text typing container */
+/* Left Column: Letter Title & Body */
 .left-letter {
   display: flex;
   flex-direction: column;
@@ -191,94 +192,149 @@ body {
   box-shadow: 0 6px 0 rgba(0,0,0,0.05);
 }
 
-/* 💫 Soft sparkle bursts — pop in, then fade away */
-.sparkle {
+/* ✨ Immersive Falling & Floating Layer */
+#sparkLayer {
   position: fixed;
+  inset: 0;
   pointer-events: none;
-  font-size: 22px;
-  opacity: 0;
-  text-shadow: 0 0 10px #fff8, 0 0 18px #fff;
-  z-index: 1
+  z-index: 1;
 }
 
-/* 🚪 Front Door: Title card + password only */
+.falling-emoji {
+  position: absolute;
+  top: -50px;
+  pointer-events: none;
+  user-select: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(var(--sway)) rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+/* 🚪 Front Door: Premium Frosted Glass look */
 .gate {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 20;
   background: transparent;
-  z-index: 20
 }
 
 .gateInner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px
+  gap: 24px;
 }
 
 .titleCard {
-  background: rgba(255,250,243,0.95);
-  border-radius: 24px;
-  padding: 44px 56px;
+  background: rgba(255, 253, 250, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 32px;
+  padding: 48px 64px;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
-  border: 1px solid rgba(168, 107, 125, 0.2);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.03),
+    0 20px 50px rgba(168, 107, 125, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+
+/* Subtle pulse glow around the entry card */
+.titleCard::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 34px;
+  background: linear-gradient(45deg, #ffe3ea, #fff2d9, #e3f0e0, #ffe3ea);
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(6px);
 }
 
 .cardLabel {
   margin: 0;
   font-family: 'Quicksand', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: #a89a86;
+  color: #baae9c;
 }
 
 .cardTitle {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  font-size: clamp(40px, 6vw, 58px);
+  font-size: clamp(44px, 7vw, 64px);
   color: var(--pill-d);
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
 .cardIcons {
-  margin-top: 18px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  font-size: 24px;
+  gap: 16px;
+  font-size: 28px;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.06));
 }
 
 .nameInput {
-  padding: 14px;
-  border-radius: 20px;
+  padding: 16px 24px;
+  border-radius: 24px;
   border: 2px solid var(--pill-d);
   font-family: 'Quicksand';
   font-weight: 700;
   text-align: center;
   font-size: 16px;
   width: min(320px, 85vw);
-  background: #fff;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-  transition: border-color .2s ease;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 10px 25px rgba(168, 107, 125, 0.08),
+    inset 0 2px 4px rgba(0,0,0,0.03);
+  outline: none;
+  transition: all 0.3s ease;
 }
+
+.nameInput:focus {
+  background: #fff;
+  box-shadow: 
+    0 10px 30px rgba(168, 107, 125, 0.15),
+    inset 0 1px 2px rgba(0,0,0,0.02);
+  transform: translateY(-1px);
+}
+
 .nameInput.wrong {
   border-color: #e0a6a6;
   animation: shake .4s ease;
 }
+
 @keyframes shake {
   0%, 100% { transform: translateX(0) }
   25% { transform: translateX(-6px) }
   75% { transform: translateX(6px) }
 }
 
-/* 📱 Mobile: stack the letter and photo instead of squeezing side by side */
+/* 📱 Mobile Styling */
 @media (max-width: 700px) {
   .stage {
     grid-template-columns: 1fr;
@@ -293,6 +349,7 @@ body {
   .avatarFrame { width: min(220px, 65vw); margin: 0 auto; }
   #prevBtn { left: -8px; }
   #nextBtn { right: -8px; }
+  .titleCard { padding: 36px 32px; }
 }
 </style>
 </head>
@@ -358,8 +415,8 @@ I don't expect everything to go back to normal instantly, and I entirely respect
     "pic3.jpg"
   ],
 
-  sparklesPerSecond: 8,
-  sparkSet: ["✨", "🦋", "👸", "🌟", "💫", "⭐", "🌸", "🌷", "👑", "🌼"]
+  spawnIntervalMs: 250, // how often a new object falls down (lower = more dense)
+  sparkSet: ["✨", "🦋", "👸", "🌟", "💫", "🌸", "🌷", "👑", "🌼", "💕"]
 };
 
 /* ===== Typewriter Function ===== */
@@ -371,22 +428,80 @@ function typewrite(el, text, speed=28, done){
   activeTypers.set(el, t);
 }
 
-/* ===== Soft popping/falling sparkle bursts (Runs instantly on load) ===== */
+/* ===== Elegant Falling Garden System ===== */
 const sparkLayer = document.getElementById('sparkLayer');
-function sparkle(){
-  const s=document.createElement('div'); s.className='sparkle';
-  s.textContent=CONFIG.sparkSet[Math.floor(Math.random()*CONFIG.sparkSet.length)];
-  s.style.left=Math.random()*innerWidth+'px';
-  s.style.top=Math.random()*innerHeight+'px';
-  s.style.transform=`scale(${0.6+Math.random()*1.3}) rotate(${Math.random()*40-20}deg)`;
-  sparkLayer.appendChild(s);
-  requestAnimationFrame(()=> s.style.transition='opacity .16s ease');
-  s.style.opacity=1;
-  setTimeout(()=> s.style.opacity=0, 400+Math.random()*600);
-  setTimeout(()=> s.remove(), 1200);
+
+function createFallingEmoji(customX = null, customY = null, isExplosion = false) {
+  const el = document.createElement('div');
+  el.className = 'falling-emoji';
+  el.textContent = CONFIG.sparkSet[Math.floor(Math.random() * CONFIG.sparkSet.length)];
+  
+  // Randomizing sizing & depths
+  const scale = 0.5 + Math.random() * 1.2;
+  const size = (16 + Math.random() * 16) * scale;
+  el.style.fontSize = `${size}px`;
+  
+  // Swaying physics variables
+  const swayRange = (40 + Math.random() * 80) * (Math.random() > 0.5 ? 1 : -1);
+  const totalRotation = (90 + Math.random() * 180) * (Math.random() > 0.5 ? 1 : -1);
+  el.style.setProperty('--sway', `${swayRange}px`);
+  el.style.setProperty('--rotation', `${totalRotation}deg`);
+  
+  // Speed variations
+  const duration = isExplosion ? (0.6 + Math.random() * 0.8) : (4 + Math.random() * 4);
+  el.style.animationDuration = `${duration}s`;
+
+  if (isExplosion) {
+    // Blast outwards path logic
+    el.style.left = `${customX}px`;
+    el.style.top = `${customY}px`;
+    el.style.transform = 'translate(-50%, -50%)';
+    
+    // Custom explosive keyframe injection
+    const targetX = (Math.random() - 0.5) * window.innerWidth * 0.8;
+    const targetY = (Math.random() - 0.5) * window.innerHeight * 0.8;
+    
+    el.style.animate([
+      { transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(${scale}) rotate(${totalRotation}deg)`, opacity: 0 }
+    ], {
+      duration: duration * 1000,
+      easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
+      fill: 'forwards'
+    });
+  } else {
+    // Normal vertical falling layout
+    el.style.left = `${customX !== null ? customX : Math.random() * 100}%`;
+  }
+  
+  sparkLayer.appendChild(el);
+  setTimeout(() => el.remove(), duration * 1000);
 }
-// Start immediately on first page load
-setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
+
+// Continuous natural generation loop running instantly
+setInterval(() => {
+  createFallingEmoji();
+}, CONFIG.spawnIntervalMs);
+
+/* ===== Sparkle Explosion on Unlock ===== */
+function triggerUnlockExplosion() {
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  for (let i = 0; i < 40; i++) {
+    createFallingEmoji(centerX, centerY, true);
+  }
+}
+
+/* ===== Mouse Interaction (Interactive Trails) ===== */
+let lastMove = 0;
+window.addEventListener('mousemove', (e) => {
+  const now = Date.now();
+  if (now - lastMove < 120) return; // limit frequency to look cleaner
+  lastMove = now;
+  // drop an extra item near user cursor coordinates natively
+  const percentageX = (e.clientX / window.innerWidth) * 100;
+  createFallingEmoji(percentageX, -10);
+});
 
 /* ===== Photo Gallery ===== */
 const avatarImg = document.getElementById('avatarImg');
@@ -409,7 +524,6 @@ const signature = document.getElementById('signature');
 
 function playLetter(){
   signature.classList.remove('show');
-
   typewrite(typeTitle, CONFIG.staticTitle, 40, () => {
     typewrite(typeBody, CONFIG.staticBody, 22, () => {
       signature.classList.add('show');
@@ -434,15 +548,19 @@ nameInput.addEventListener('keydown', (e)=>{
     updateGallery(currentSlide);
 
     bgm.play().catch(err => console.log("Audio play gesture required"));
+    
+    // Pop celebration sparkles from the center layout
+    triggerUnlockExplosion();
 
-    gate.style.transition = "opacity .5s ease";
+    gate.style.transition = "all .6s cubic-bezier(0.4, 0, 0.2, 1)";
     gate.style.opacity = 0;
+    gate.style.transform = "scale(0.95)";
 
     setTimeout(()=>{
       gate.style.display = "none";
       scene.style.display = "grid";
       playLetter();
-    }, 500);
+    }, 600);
 
   } else {
     nameInput.classList.remove('wrong');
