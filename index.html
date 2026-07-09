@@ -191,7 +191,7 @@ body {
   box-shadow: 0 6px 0 rgba(0,0,0,0.05);
 }
 
-/* 💫 Soft sparkle bursts — pop in, then fade away (never fall) */
+/* 💫 Soft sparkle bursts — pop in, then fade away */
 .sparkle {
   position: fixed;
   pointer-events: none;
@@ -199,13 +199,6 @@ body {
   opacity: 0;
   text-shadow: 0 0 10px #fff8, 0 0 18px #fff;
   z-index: 1
-}
-.sparkle-svg {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 1;
-  filter: drop-shadow(0 0 6px rgba(115,150,220,0.35));
 }
 
 /* 🚪 Front Door: Title card + password only */
@@ -215,11 +208,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(circle at 15% 20%, #ffe3ea 0%, transparent 40%),
-    radial-gradient(circle at 85% 15%, #e3f0e0 0%, transparent 45%),
-    radial-gradient(circle at 50% 95%, #fff2d9 0%, transparent 50%),
-    var(--bg);
+  background: transparent;
   z-index: 20
 }
 
@@ -231,11 +220,12 @@ body {
 }
 
 .titleCard {
-  background: rgba(255,250,243,0.9);
+  background: rgba(255,250,243,0.95);
   border-radius: 24px;
   padding: 44px 56px;
   text-align: center;
   box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+  border: 1px solid rgba(168, 107, 125, 0.2);
 }
 
 .cardLabel {
@@ -262,9 +252,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  font-size: 22px;
+  font-size: 24px;
 }
-.cardIcons svg { display: block; }
 
 .nameInput {
   padding: 14px;
@@ -314,7 +303,7 @@ body {
     <div class="titleCard">
       <p class="cardLabel">A Garden Letter</p>
       <h1 class="cardTitle">For Amulya</h1>
-      <div class="cardIcons" id="cardIcons"></div>
+      <div class="cardIcons" id="cardIcons">🦋 🌸 👸 🌷</div>
     </div>
 
     <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
@@ -351,11 +340,9 @@ body {
 
 <script>
 const CONFIG = {
-  unlockWord: "Nidramabbuamalaya", // 🔐 Change this to the password you want her to type
+  unlockWord: "Nidramabbuamalaya", 
 
   staticTitle: "🌸 For my sister / friend... I miss you deeply. 🌸",
-  // ✏️ REPLACE [WHAT I DID] below with the actual specific thing — naming it
-  // exactly is what makes an apology land. Vague regret reads as less sincere.
   staticBody:
 `I am writing this because finding the right words out loud has been hard, but I couldn't let another day pass without trying to fix what I broke.
 
@@ -365,19 +352,17 @@ Our friendship means the world to me. You have been my safe space, my partner in
 
 I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted you to know I mean this, I miss you, and whenever you're ready... I'll be right here. 🌷`,
 
-  // 📸 Photo gallery — replace with real photo filenames, add/remove as many as you want
   galleryItems: [
     "bestie.png",
     "pic2.jpg",
     "pic3.jpg"
   ],
 
-  sparklesPerSecond: 6,
-  sparkSet: ["✨", "🌟", "💫", "⭐", "🌸", "🌷", "👑", "🌼"],
-  butterflySharePerSecond: 1.2  // how often a blue butterfly pops in, separate from the emoji set
+  sparklesPerSecond: 8,
+  sparkSet: ["✨", "🦋", "👸", "🌟", "💫", "⭐", "🌸", "🌷", "👑", "🌼"]
 };
 
-/* ===== Typewriter Function (guards against overlap) ===== */
+/* ===== Typewriter Function ===== */
 let activeTypers = new WeakMap();
 function typewrite(el, text, speed=28, done){
   if (activeTypers.has(el)) clearInterval(activeTypers.get(el));
@@ -386,7 +371,7 @@ function typewrite(el, text, speed=28, done){
   activeTypers.set(el, t);
 }
 
-/* ===== Soft sparkle bursts (emoji) — pop in, fade out, never fall ===== */
+/* ===== Soft popping/falling sparkle bursts (Runs instantly on load) ===== */
 const sparkLayer = document.getElementById('sparkLayer');
 function sparkle(){
   const s=document.createElement('div'); s.className='sparkle';
@@ -397,43 +382,11 @@ function sparkle(){
   sparkLayer.appendChild(s);
   requestAnimationFrame(()=> s.style.transition='opacity .16s ease');
   s.style.opacity=1;
-  setTimeout(()=> s.style.opacity=0, 360+Math.random()*520);
+  setTimeout(()=> s.style.opacity=0, 400+Math.random()*600);
   setTimeout(()=> s.remove(), 1200);
 }
+// Start immediately on first page load
 setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
-
-/* ===== Blue butterfly (custom SVG, so the color is always blue) — pop in, fade out ===== */
-const BUTTERFLY_SVG = `<svg width="30" height="24" viewBox="0 0 30 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M14 12 C10 2, 0 2, 1 9 C1.6 13.5, 8 13.5, 14 12Z" fill="#6f9ce0"/>
-  <path d="M14 12 C10 22, 0 22, 1 15 C1.6 10.5, 8 10.5, 14 12Z" fill="#4f7fc9"/>
-  <path d="M16 12 C20 2, 30 2, 29 9 C28.4 13.5, 22 13.5, 16 12Z" fill="#6f9ce0"/>
-  <path d="M16 12 C20 22, 30 22, 29 15 C28.4 10.5, 22 10.5, 16 12Z" fill="#4f7fc9"/>
-  <rect x="14" y="8" width="2" height="9" rx="1" fill="#3a5c98"/>
-</svg>`;
-const BUTTERFLY_PALE_SVG = `<svg width="26" height="21" viewBox="0 0 30 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M14 12 C10 2, 0 2, 1 9 C1.6 13.5, 8 13.5, 14 12Z" fill="#e9dfe3"/>
-  <path d="M14 12 C10 22, 0 22, 1 15 C1.6 10.5, 8 10.5, 14 12Z" fill="#d8c9d0"/>
-  <path d="M16 12 C20 2, 30 2, 29 9 C28.4 13.5, 22 13.5, 16 12Z" fill="#e9dfe3"/>
-  <path d="M16 12 C20 22, 30 22, 29 15 C28.4 10.5, 22 10.5, 16 12Z" fill="#d8c9d0"/>
-  <rect x="14" y="8" width="2" height="9" rx="1" fill="#b9a8b1"/>
-</svg>`;
-function butterfly(){
-  const b=document.createElement('div'); b.className='sparkle-svg';
-  b.innerHTML=BUTTERFLY_SVG;
-  b.style.left=Math.random()*innerWidth+'px';
-  b.style.top=Math.random()*innerHeight+'px';
-  b.style.transform=`scale(${0.8+Math.random()*0.8}) rotate(${Math.random()*30-15}deg)`;
-  sparkLayer.appendChild(b);
-  requestAnimationFrame(()=> b.style.transition='opacity .2s ease');
-  b.style.opacity=1;
-  setTimeout(()=> b.style.opacity=0, 450+Math.random()*550);
-  setTimeout(()=> b.remove(), 1300);
-}
-setInterval(butterfly, 1000/CONFIG.butterflySharePerSecond);
-
-/* ===== Fill the title-card icon row (runs directly — cardIcons already exists in DOM by now) ===== */
-document.getElementById('cardIcons').innerHTML =
-  `<span>${BUTTERFLY_PALE_SVG}</span><span>🌸</span><span>${BUTTERFLY_SVG}</span><span>🌷</span>`;
 
 /* ===== Photo Gallery ===== */
 const avatarImg = document.getElementById('avatarImg');
@@ -449,7 +402,7 @@ function updateGallery(index){
 prevBtn.addEventListener('click', ()=>{ if(currentSlide>0){ currentSlide--; updateGallery(currentSlide); } });
 nextBtn.addEventListener('click', ()=>{ if(currentSlide<CONFIG.galleryItems.length-1){ currentSlide++; updateGallery(currentSlide); } });
 
-/* ===== Letter sequence (title -> body -> signature) ===== */
+/* ===== Letter sequence ===== */
 const typeTitle = document.getElementById('typeTitle');
 const typeBody = document.getElementById('typeBody');
 const signature = document.getElementById('signature');
@@ -493,7 +446,7 @@ nameInput.addEventListener('keydown', (e)=>{
 
   } else {
     nameInput.classList.remove('wrong');
-    void nameInput.offsetWidth; // restart animation if triggered again quickly
+    void nameInput.offsetWidth; 
     nameInput.classList.add('wrong');
     nameInput.value = "";
   }
