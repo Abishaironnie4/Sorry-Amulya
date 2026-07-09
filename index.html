@@ -3,38 +3,39 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>For Amulya — Blooming Storybook</title>
+<title>For Amulya</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #eae3d2;       /* Warm vintage organic paper brown */
-  --book-sheet: #fbf9f3;/* Elegant warm cotton journal sheet */
-  --ink: #2d261d;      /* Deep sepia charcoal ink styling */
-  --accent: #8b9a86;   /* Earthy sage leaf tone */
+  --bg: #fbf6ee;         /* warm cream */
+  --ink: #5a5145;        /* soft brown ink, not harsh black */
+  --pill: #c98a9c;       /* dusty rose */
+  --pill-d: #a86b7d;     /* deeper rose for shadow/accents */
+  --ring: #6b5c4b;       /* soft brown border */
+  --white: #fff;
+  --paper-line: #ecdfd0;
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box
 }
 
 html, body {
   height: 100%;
-  margin: 0;
-  background: var(--bg);
-  font-family: 'Nunito', system-ui;
-  color: var(--ink);
-  overflow: hidden;
+  margin: 0
 }
 
-.grid {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(to right, rgba(45,38,29,0.03) 1px, transparent 1px) 0 0/30px 30px,
-              linear-gradient(to bottom, rgba(45,38,29,0.03) 1px, transparent 1px) 0 0/30px 30px;
-  z-index: 0;
+body {
+  background:
+    radial-gradient(circle at 15% 20%, #ffe3ea 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, #e3f0e0 0%, transparent 45%),
+    radial-gradient(circle at 50% 95%, #fff2d9 0%, transparent 50%),
+    var(--bg);
+  font-family: 'Quicksand', system-ui;
+  color: var(--ink);
+  overflow: hidden
 }
 
 .wrap {
@@ -42,205 +43,303 @@ html, body {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 2;
+  justify-content: center
 }
 
-/* 📖 Main Layout - Two page open notebook book block */
+/* 🌸 Layout - Main Apology split screen (watercolor paper feel) */
 .stage {
   position: relative;
-  width: min(1150px, 94vw);
-  height: min(620px, 85vh);
+  width: min(1100px, 92vw);
+  height: min(600px, 88vh);
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 0;
-  background: var(--book-sheet);
-  border: 2px solid #c9beaa;
-  border-radius: 6px;
-  box-shadow: 0 15px 45px rgba(45, 38, 29, 0.15), 
-              inset 30px 0 50px rgba(0,0,0,0.02),
-              inset -30px 0 50px rgba(0,0,0,0.02);
-  padding: 50px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  background: #fffaf3;
+  border: 2px solid var(--pill-d);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 2px 0 #fff, 0 5px 0 var(--paper-line), 0 20px 50px rgba(0,0,0,0.08);
+  transform: rotate(-0.35deg);
 }
 
-/* Vintage center-spine book fold partition split crease */
-.stage::after {
-  content: '';
-  position: absolute;
-  left: 57.5%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0) 100%);
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
+/* Left Column: Letter Title & Body text typing container */
 .left-letter {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 16px;
+  gap: 12px;
   overflow: hidden;
-  padding-right: 40px;
+  position: relative;
 }
 
 .left-letter h2 {
   margin: 0;
-  font-family: 'Special Elite', cursive; /* Typewriter font accent */
-  font-size: clamp(22px, 3vw, 30px);
-  color: #4a3e31;
-  line-height: 1.3;
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 46px);
+  color: var(--pill-d);
+  line-height: 1.2;
+  padding-right: 40px;
 }
 
 .left-letter p {
   margin: 0;
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.8;
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 600;
+  line-height: 28px;
   white-space: pre-wrap;
   overflow-y: auto;
-  padding-right: 15px;
-  color: #3b3227;
+  padding-right: 10px;
+  color: #4a4335;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--paper-line) 28px);
+  background-position: 0 4px;
 }
 
+.signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(26px, 3.2vw, 34px);
+  color: var(--pill-d);
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.signature.show { opacity: 1; }
+
+/* Replay button */
+.replayBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--pill-d);
+  color: var(--pill-d);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+}
+
+/* Right Column: photo gallery */
 .right-picture {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-left: 40px;
-}
-
-/* 🖼️ Polaroid Craft Frame Concept styling structure */
-.polaroid {
-  background: #fff;
-  padding: 16px 16px 36px 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  transform: rotate(3deg);
   position: relative;
-  width: min(300px, 100%);
-  border: 1px solid #eee;
 }
 
-/* Washi tape mockup graphic overlay decorations */
-.polaroid::before {
-  content: '';
-  position: absolute;
-  top: -18px;
-  left: 35%;
-  width: 90px;
-  height: 25px;
-  background: rgba(218, 211, 191, 0.6);
-  backdrop-filter: blur(1px);
-  transform: rotate(-4deg);
-  border-left: 2px dashed rgba(0,0,0,0.05);
-  border-right: 2px dashed rgba(0,0,0,0.05);
+.avatarFrame {
+  position: relative;
+  width: min(320px, 100%);
 }
 
 .avatar {
   width: 100%;
   aspect-ratio: 1 / 1;
+  border-radius: 50%;
   overflow: hidden;
-  background: #f0ede6;
-  border: 1px solid #e2ded5;
+  background: #ecdfd0 center/cover no-repeat;
+  border: 6px solid var(--pill);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: 2px solid var(--pill-d);
+  color: var(--pill-d);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.06);
+  transition: transform .1s ease;
+}
+.nav-arrow:active { transform: translateY(-50%) scale(0.94); }
+.nav-arrow:disabled { opacity: .35; cursor: default; }
+#prevBtn { left: -14px; }
+#nextBtn { right: -14px; }
 
 .nameTag {
-  margin-top: 15px;
-  font-family: 'Special Elite', cursive;
-  font-size: 18px;
-  text-align: center;
-  color: #554a3c;
+  margin-top: 20px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: var(--pill);
+  color: #fff;
+  border: 2px solid var(--pill-d);
+  font-family: 'Quicksand';
+  font-weight: 700;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.05);
 }
 
+/* 💫 Soft sparkle bursts — pop in, then fade away (never fall) */
 .sparkle {
   position: fixed;
   pointer-events: none;
-  font-size: 26px;
+  font-size: 22px;
+  opacity: 0;
+  text-shadow: 0 0 10px #fff8, 0 0 18px #fff;
+  z-index: 1
+}
+.sparkle-svg {
+  position: fixed;
+  pointer-events: none;
   opacity: 0;
   z-index: 1;
+  filter: drop-shadow(0 0 6px rgba(115,150,220,0.35));
 }
 
-/* 🚪 front gate logic block styles */
+/* 🚪 Front Door: Title card + password only */
 .gate {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg);
-  z-index: 20;
+  background:
+    radial-gradient(circle at 15% 20%, #ffe3ea 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, #e3f0e0 0%, transparent 45%),
+    radial-gradient(circle at 50% 95%, #fff2d9 0%, transparent 50%),
+    var(--bg);
+  z-index: 20
 }
 
 .gateInner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 28px
 }
 
-.bookIcon {
-  font-size: 70px;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.06));
-}
-
-.bob { animation: bob 2.2s ease-in-out infinite; }
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-.typeLabel {
-  font-family: 'Special Elite', sans-serif;
-  font-size: 22px;
-  color: var(--ink);
+.titleCard {
+  background: rgba(255,250,243,0.9);
+  border-radius: 24px;
+  padding: 44px 56px;
   text-align: center;
-  max-width: 400px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
 }
+
+.cardLabel {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a89a86;
+}
+
+.cardTitle {
+  margin: 6px 0 0;
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 58px);
+  color: var(--pill-d);
+}
+
+.cardIcons {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 22px;
+}
+.cardIcons svg { display: block; }
 
 .nameInput {
-  padding: 12px 15px;
-  border-radius: 4px;
-  border: 2px solid #bdae93;
-  font-family: 'Special Elite';
+  padding: 14px;
+  border-radius: 20px;
+  border: 2px solid var(--pill-d);
+  font-family: 'Quicksand';
+  font-weight: 700;
   text-align: center;
   font-size: 16px;
   width: min(320px, 85vw);
-  background: #fdfbf7;
-  color: var(--ink);
-  outline: none;
+  background: #fff;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: border-color .2s ease;
+}
+.nameInput.wrong {
+  border-color: #e0a6a6;
+  animation: shake .4s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0) }
+  25% { transform: translateX(-6px) }
+  75% { transform: translateX(6px) }
+}
+
+/* 📱 Mobile: stack the letter and photo instead of squeezing side by side */
+@media (max-width: 700px) {
+  .stage {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 26px 22px;
+    gap: 22px;
+    transform: none;
+  }
+  .right-picture { order: -1; }
+  .avatarFrame { width: min(220px, 65vw); margin: 0 auto; }
+  #prevBtn { left: -8px; }
+  #nextBtn { right: -8px; }
 }
 </style>
 </head>
 <body>
 
-<div class="grid"></div>
-
-<!-- 🚪 FRONT DIALOG LAYER PASS GATEWAY -->
 <div class="gate" id="gate">
   <div class="gateInner">
-    <div class="bookIcon bob">📖</div>
-    <div class="typeLabel" id="typeLabel"></div>
+    <div class="titleCard">
+      <p class="cardLabel">A Garden Letter</p>
+      <h1 class="cardTitle">For Amulya</h1>
+      <div class="cardIcons" id="cardIcons"></div>
+    </div>
+
     <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
   </div>
 </div>
 
-<!-- 💻 MAIN GRAPHIC JOURNAL INNER CONTENT LAYOUT LAYER -->
 <div class="wrap">
   <div class="stage" id="scene" style="display:none;">
-    
+
     <div class="left-letter">
+      <button class="replayBtn" id="replayBtn" title="Read again">↻</button>
       <h2 id="typeTitle"></h2>
       <p id="typeBody"></p>
+      <p class="signature" id="signature">— with love, always</p>
     </div>
-    
+
     <div class="right-picture">
-      <div class="polaroid">
-        <div class="avatar">
-          <img src="bestie.png" alt="Amulya" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://placehold.co/360x360/f0ede6/2d261d?text=%F0%9F%A6%8B'">
+      <div class="avatarFrame">
+        <button class="nav-arrow" id="prevBtn">❮</button>
+        <div class="avatar" id="avatar">
+          <img id="avatarImg" src="" alt="Amulya" onerror="this.src='https://placehold.co/360x360/c98a9c/ffffff?text=%F0%9F%8C%B8'">
         </div>
-        <div class="nameTag">Amulya 🌸</div>
+        <button class="nav-arrow" id="nextBtn">❯</button>
       </div>
+      <div class="nameTag">Amulya 👸</div>
     </div>
 
   </div>
@@ -252,76 +351,151 @@ html, body {
 
 <script>
 const CONFIG = {
-  unlockWord: "sorry", 
-  
-  staticTitle: "Dear Amulya...",
+  unlockWord: "Nidramabbuamalaya", // 🔐 Change this to the password you want her to type
+
+  staticTitle: "🌸 For my sister / friend... I miss you deeply. 🌸",
+  // ✏️ REPLACE [WHAT I DID] below with the actual specific thing — naming it
+  // exactly is what makes an apology land. Vague regret reads as less sincere.
   staticBody:
 `I am writing this because finding the right words out loud has been hard, but I couldn't let another day pass without trying to fix what I broke.
 
-I want to say I am incredibly, truly sorry for hurting you. Looking back at how things went down, I realize how much my actions cut deep, and it kills me to know that I am the reason there is silence between us now.
+I want to say I am incredibly, truly sorry for [WHAT I DID]. I know it hurt you, and I take full responsibility for it — not the situation, not a misunderstanding, just me.
 
 Our friendship means the world to me. You have been my safe space, my partner in crime, and a piece of my life I never want to lose.
 
-I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted to make this to show you that I am completely accountable, I miss you terribly, and whenever you are ready... I'll be right here waiting to listen.`,
+I don't expect everything to go back to normal instantly, and I entirely respect your space. But I wanted you to know I mean this, I miss you, and whenever you're ready... I'll be right here. 🌷`,
 
-  sparklesPerSecond: 12, 
-  sparkSet: ["🦋", "✨", "🌸", "🌟", "🎀", "⭐", "☀️", "🌱"] 
+  // 📸 Photo gallery — replace with real photo filenames, add/remove as many as you want
+  galleryItems: [
+    "bestie.png",
+    "pic2.jpg",
+    "pic3.jpg"
+  ],
+
+  sparklesPerSecond: 6,
+  sparkSet: ["✨", "🌟", "💫", "⭐", "🌸", "🌷", "👑", "🌼"],
+  butterflySharePerSecond: 1.2  // how often a blue butterfly pops in, separate from the emoji set
 };
 
-function typewrite(el, text, speed=35, done){ // Slightly slower type rate for typewriter aesthetic profile match
+/* ===== Typewriter Function (guards against overlap) ===== */
+let activeTypers = new WeakMap();
+function typewrite(el, text, speed=28, done){
+  if (activeTypers.has(el)) clearInterval(activeTypers.get(el));
   el.textContent=''; let i=0;
-  const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); done&&done();}}, speed);
+  const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); activeTypers.delete(el); done&&done();}}, speed);
+  activeTypers.set(el, t);
 }
 
+/* ===== Soft sparkle bursts (emoji) — pop in, fade out, never fall ===== */
 const sparkLayer = document.getElementById('sparkLayer');
 function sparkle(){
   const s=document.createElement('div'); s.className='sparkle';
   s.textContent=CONFIG.sparkSet[Math.floor(Math.random()*CONFIG.sparkSet.length)];
   s.style.left=Math.random()*innerWidth+'px';
   s.style.top=Math.random()*innerHeight+'px';
-  s.style.transform=`scale(${0.6+Math.random()*1.2}) rotate(${Math.random()*30-15}deg)`;
+  s.style.transform=`scale(${0.6+Math.random()*1.3}) rotate(${Math.random()*40-20}deg)`;
   sparkLayer.appendChild(s);
-  requestAnimationFrame(()=> s.style.transition='opacity .2s ease');
-  s.style.opacity = 0.8;
-  setTimeout(()=> s.style.opacity=0, 500+Math.random()*400);
-  setTimeout(()=> s.remove(), 1300);
+  requestAnimationFrame(()=> s.style.transition='opacity .16s ease');
+  s.style.opacity=1;
+  setTimeout(()=> s.style.opacity=0, 360+Math.random()*520);
+  setTimeout(()=> s.remove(), 1200);
 }
 setInterval(sparkle, 1000/CONFIG.sparklesPerSecond);
 
-window.addEventListener('DOMContentLoaded', () => {
-  const typeLabel = document.getElementById('typeLabel');
-  typewrite(typeLabel, "Hi Amulya... please enter your password.", 30);
-});
+/* ===== Blue butterfly (custom SVG, so the color is always blue) — pop in, fade out ===== */
+const BUTTERFLY_SVG = `<svg width="30" height="24" viewBox="0 0 30 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 12 C10 2, 0 2, 1 9 C1.6 13.5, 8 13.5, 14 12Z" fill="#6f9ce0"/>
+  <path d="M14 12 C10 22, 0 22, 1 15 C1.6 10.5, 8 10.5, 14 12Z" fill="#4f7fc9"/>
+  <path d="M16 12 C20 2, 30 2, 29 9 C28.4 13.5, 22 13.5, 16 12Z" fill="#6f9ce0"/>
+  <path d="M16 12 C20 22, 30 22, 29 15 C28.4 10.5, 22 10.5, 16 12Z" fill="#4f7fc9"/>
+  <rect x="14" y="8" width="2" height="9" rx="1" fill="#3a5c98"/>
+</svg>`;
+const BUTTERFLY_PALE_SVG = `<svg width="26" height="21" viewBox="0 0 30 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 12 C10 2, 0 2, 1 9 C1.6 13.5, 8 13.5, 14 12Z" fill="#e9dfe3"/>
+  <path d="M14 12 C10 22, 0 22, 1 15 C1.6 10.5, 8 10.5, 14 12Z" fill="#d8c9d0"/>
+  <path d="M16 12 C20 2, 30 2, 29 9 C28.4 13.5, 22 13.5, 16 12Z" fill="#e9dfe3"/>
+  <path d="M16 12 C20 22, 30 22, 29 15 C28.4 10.5, 22 10.5, 16 12Z" fill="#d8c9d0"/>
+  <rect x="14" y="8" width="2" height="9" rx="1" fill="#b9a8b1"/>
+</svg>`;
+function butterfly(){
+  const b=document.createElement('div'); b.className='sparkle-svg';
+  b.innerHTML=BUTTERFLY_SVG;
+  b.style.left=Math.random()*innerWidth+'px';
+  b.style.top=Math.random()*innerHeight+'px';
+  b.style.transform=`scale(${0.8+Math.random()*0.8}) rotate(${Math.random()*30-15}deg)`;
+  sparkLayer.appendChild(b);
+  requestAnimationFrame(()=> b.style.transition='opacity .2s ease');
+  b.style.opacity=1;
+  setTimeout(()=> b.style.opacity=0, 450+Math.random()*550);
+  setTimeout(()=> b.remove(), 1300);
+}
+setInterval(butterfly, 1000/CONFIG.butterflySharePerSecond);
 
+/* ===== Fill the title-card icon row (runs directly — cardIcons already exists in DOM by now) ===== */
+document.getElementById('cardIcons').innerHTML =
+  `<span>${BUTTERFLY_PALE_SVG}</span><span>🌸</span><span>${BUTTERFLY_SVG}</span><span>🌷</span>`;
+
+/* ===== Photo Gallery ===== */
+const avatarImg = document.getElementById('avatarImg');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let currentSlide = 0;
+
+function updateGallery(index){
+  avatarImg.src = CONFIG.galleryItems[index];
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === CONFIG.galleryItems.length - 1;
+}
+prevBtn.addEventListener('click', ()=>{ if(currentSlide>0){ currentSlide--; updateGallery(currentSlide); } });
+nextBtn.addEventListener('click', ()=>{ if(currentSlide<CONFIG.galleryItems.length-1){ currentSlide++; updateGallery(currentSlide); } });
+
+/* ===== Letter sequence (title -> body -> signature) ===== */
+const typeTitle = document.getElementById('typeTitle');
+const typeBody = document.getElementById('typeBody');
+const signature = document.getElementById('signature');
+
+function playLetter(){
+  signature.classList.remove('show');
+
+  typewrite(typeTitle, CONFIG.staticTitle, 40, () => {
+    typewrite(typeBody, CONFIG.staticBody, 22, () => {
+      signature.classList.add('show');
+    });
+  });
+}
+
+document.getElementById('replayBtn').addEventListener('click', playLetter);
+
+/* ===== Password Gate Logic Handler ===== */
 const gate = document.getElementById('gate');
 const nameInput = document.getElementById('nameInput');
 const bgm = document.getElementById('bgm');
 const scene = document.getElementById('scene');
-const typeTitle = document.getElementById('typeTitle'); 
-const typeBody = document.getElementById('typeBody');
 
 nameInput.addEventListener('keydown', (e)=>{
   if(e.key !== "Enter") return;
   const v = (nameInput.value || '').trim().toLowerCase();
-  
+
   if(v === CONFIG.unlockWord.toLowerCase()){
-    bgm.play().catch(err => console.log("Audio required user token check active"));
-    
-    gate.style.transition = "opacity .5s ease"; 
+    nameInput.disabled = true;
+    updateGallery(currentSlide);
+
+    bgm.play().catch(err => console.log("Audio play gesture required"));
+
+    gate.style.transition = "opacity .5s ease";
     gate.style.opacity = 0;
-    
-    setTimeout(()=>{ 
-      gate.style.display = "none"; 
-      scene.style.display = "grid"; 
-      
-      typewrite(typeTitle, CONFIG.staticTitle, 45, () => {
-        typewrite(typeBody, CONFIG.staticBody, 25);
-      });
+
+    setTimeout(()=>{
+      gate.style.display = "none";
+      scene.style.display = "grid";
+      playLetter();
     }, 500);
+
   } else {
-    const typeLabel = document.getElementById('typeLabel');
-    typewrite(typeLabel, "Please try again... I made this entirely for you.", 25);
-    nameInput.value = ""; 
+    nameInput.classList.remove('wrong');
+    void nameInput.offsetWidth; // restart animation if triggered again quickly
+    nameInput.classList.add('wrong');
+    nameInput.value = "";
   }
 });
 </script>
