@@ -415,7 +415,7 @@ I don't expect everything to go back to normal instantly, and I entirely respect
     "pic3.jpg"
   ],
 
-  spawnIntervalMs: 250, // how often a new object falls down (lower = more dense)
+  spawnIntervalMs: 250, 
   sparkSet: ["✨", "🦋", "👸", "🌟", "💫", "🌸", "🌷", "👑", "🌼", "💕"]
 };
 
@@ -436,32 +436,28 @@ function createFallingEmoji(customX = null, customY = null, isExplosion = false)
   el.className = 'falling-emoji';
   el.textContent = CONFIG.sparkSet[Math.floor(Math.random() * CONFIG.sparkSet.length)];
   
-  // Randomizing sizing & depths
   const scale = 0.5 + Math.random() * 1.2;
   const size = (16 + Math.random() * 16) * scale;
   el.style.fontSize = `${size}px`;
   
-  // Swaying physics variables
   const swayRange = (40 + Math.random() * 80) * (Math.random() > 0.5 ? 1 : -1);
   const totalRotation = (90 + Math.random() * 180) * (Math.random() > 0.5 ? 1 : -1);
   el.style.setProperty('--sway', `${swayRange}px`);
   el.style.setProperty('--rotation', `${totalRotation}deg`);
   
-  // Speed variations
   const duration = isExplosion ? (0.6 + Math.random() * 0.8) : (4 + Math.random() * 4);
   el.style.animationDuration = `${duration}s`;
 
   if (isExplosion) {
-    // Blast outwards path logic
     el.style.left = `${customX}px`;
     el.style.top = `${customY}px`;
     el.style.transform = 'translate(-50%, -50%)';
     
-    // Custom explosive keyframe injection
     const targetX = (Math.random() - 0.5) * window.innerWidth * 0.8;
     const targetY = (Math.random() - 0.5) * window.innerHeight * 0.8;
     
-    el.style.animate([
+    // Fixed: calling .animate() directly on the element node
+    el.animate([
       { transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', opacity: 1 },
       { transform: `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(${scale}) rotate(${totalRotation}deg)`, opacity: 0 }
     ], {
@@ -470,7 +466,6 @@ function createFallingEmoji(customX = null, customY = null, isExplosion = false)
       fill: 'forwards'
     });
   } else {
-    // Normal vertical falling layout
     el.style.left = `${customX !== null ? customX : Math.random() * 100}%`;
   }
   
@@ -478,7 +473,7 @@ function createFallingEmoji(customX = null, customY = null, isExplosion = false)
   setTimeout(() => el.remove(), duration * 1000);
 }
 
-// Continuous natural generation loop running instantly
+// Continuous natural generation loop
 setInterval(() => {
   createFallingEmoji();
 }, CONFIG.spawnIntervalMs);
@@ -492,13 +487,12 @@ function triggerUnlockExplosion() {
   }
 }
 
-/* ===== Mouse Interaction (Interactive Trails) ===== */
+/* ===== Mouse Interaction ===== */
 let lastMove = 0;
 window.addEventListener('mousemove', (e) => {
   const now = Date.now();
-  if (now - lastMove < 120) return; // limit frequency to look cleaner
+  if (now - lastMove < 120) return;
   lastMove = now;
-  // drop an extra item near user cursor coordinates natively
   const percentageX = (e.clientX / window.innerWidth) * 100;
   createFallingEmoji(percentageX, -10);
 });
@@ -549,7 +543,6 @@ nameInput.addEventListener('keydown', (e)=>{
 
     bgm.play().catch(err => console.log("Audio play gesture required"));
     
-    // Pop celebration sparkles from the center layout
     triggerUnlockExplosion();
 
     gate.style.transition = "all .6s cubic-bezier(0.4, 0, 0.2, 1)";
