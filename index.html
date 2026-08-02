@@ -621,6 +621,7 @@ function updateGallery(index){
     const video = document.createElement('video');
     video.controls = true;
     video.playsInline = true;
+    video.muted = true;
     missingBox.textContent = '🎬 video coming soon';
     const badge = document.createElement('div');
     badge.className = 'playBadge';
