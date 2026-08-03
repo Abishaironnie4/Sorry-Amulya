@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>For Amulya</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -18,15 +18,12 @@
   --paper-line: #ecdfd0;
 }
 
-* { 
-  box-sizing: border-box; 
-  -webkit-tap-highlight-color: transparent;
-}
+* { box-sizing: border-box }
 
 html, body {
-  min-height: 100vh;
+  height: 100%;
   margin: 0;
-  padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -35,33 +32,31 @@ body {
     radial-gradient(circle at 85% 15%, #e3f0e0 0%, transparent 45%),
     radial-gradient(circle at 50% 95%, #fff2d9 0%, transparent 50%),
     var(--bg);
-  font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+  font-family: 'Quicksand', system-ui;
   color: var(--ink);
-  overflow-x: hidden;
 }
 
 .wrap {
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  padding: 20px 10px;
 }
 
 /* 🌸 Layout - Main Apology split screen */
 .stage {
   position: relative;
-  width: min(1100px, 95vw);
-  max-height: 88vh;
+  width: min(1100px, 92vw);
+  height: min(600px, 88vh);
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 30px;
+  gap: 40px;
   background: #fffaf3;
   border: 2px solid var(--pill-d);
   border-radius: 24px;
-  padding: 30px;
+  padding: 40px;
   box-shadow: 0 2px 0 #fff, 0 5px 0 var(--paper-line), 0 20px 50px rgba(0,0,0,0.08);
   transform: rotate(-0.35deg);
 }
@@ -80,7 +75,7 @@ body {
   margin: 0;
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  font-size: clamp(26px, 4.2vw, 46px);
+  font-size: clamp(30px, 4.2vw, 46px);
   color: var(--pill-d);
   line-height: 1.2;
   padding-right: 40px;
@@ -88,7 +83,7 @@ body {
 
 .left-letter p {
   margin: 0;
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: clamp(15px, 2vw, 18px);
   font-weight: 600;
   line-height: 28px;
   white-space: pre-wrap;
@@ -99,27 +94,25 @@ body {
   background-position: 0 4px;
   flex: 1 1 auto;
   min-height: 0;
-  -webkit-overflow-scrolling: touch;
 }
 
 .signature {
   font-family: 'Quicksand', system-ui;
   font-weight: 700;
-  font-size: clamp(13px, 1.6vw, 17px);
+  font-size: clamp(14px, 1.6vw, 17px);
   color: var(--pill-d);
   text-align: right;
   opacity: 0;
   transition: opacity .8s ease;
   position: absolute;
-  right: 15px;
-  bottom: 10px;
+  right: 26px;
+  bottom: 18px;
   margin: 0;
   z-index: 6;
-  background: rgba(255, 250, 243, 0.95);
-  padding: 6px 12px;
+  background: rgba(255, 250, 243, 0.92);
+  padding: 4px 10px;
   border-radius: 10px;
   line-height: 1.4;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 .signature.show { opacity: 1; }
 
@@ -128,18 +121,17 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #fff;
   border: 2px solid var(--pill-d);
   color: var(--pill-d);
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   box-shadow: 0 4px 0 rgba(0,0,0,0.05);
-  z-index: 5;
 }
 
 /* Right Column: photo/video gallery */
@@ -158,7 +150,8 @@ body {
 
 .avatar {
   width: 100%;
-  height: 300px;
+  min-height: 220px;
+  max-height: 420px;
   border-radius: 20px;
   overflow: hidden;
   background: var(--paper-line);
@@ -208,40 +201,40 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.9);
   border: 2px solid var(--pill-d);
   color: var(--pill-d);
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   display: grid;
   place-items: center;
   font-size: 20px;
   font-weight: 900;
   cursor: pointer;
   z-index: 5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.06);
   transition: transform .1s ease;
 }
-.nav-arrow:active { transform: translateY(-50%) scale(0.9); }
+.nav-arrow:active { transform: translateY(-50%) scale(0.94); }
 .nav-arrow:disabled { opacity: .35; cursor: default; }
 #prevBtn { left: -14px; }
 #nextBtn { right: -14px; }
 
 .nameTag {
-  margin-top: 15px;
-  padding: 8px 20px;
+  margin-top: 20px;
+  padding: 10px 24px;
   border-radius: 999px;
   background: var(--pill);
   color: #fff;
   border: 2px solid var(--pill-d);
   font-family: 'Quicksand';
   font-weight: 700;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.05);
 }
 
 .galleryCount {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 12px;
   font-weight: 700;
   color: #9b8f7c;
@@ -280,35 +273,27 @@ body {
   justify-content: center;
   z-index: 20;
   background: transparent;
-  padding: 20px;
 }
 
-.gateInner { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 20px; 
-  width: 100%;
-}
+.gateInner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 
 .titleCard {
-  background: rgba(255, 253, 250, 0.85);
+  background: rgba(255, 253, 250, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 28px;
-  padding: 36px 28px;
+  border-radius: 32px;
+  padding: 48px 64px;
   text-align: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03), 0 20px 50px rgba(168, 107, 125, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.6);
   position: relative;
-  width: min(400px, 90vw);
 }
 
 .titleCard::before {
   content: '';
   position: absolute;
   inset: -2px;
-  border-radius: 30px;
+  border-radius: 34px;
   background: linear-gradient(45deg, #ffe3ea, #fff2d9, #e3f0e0, #ffe3ea);
   z-index: -1;
   opacity: 0.6;
@@ -318,9 +303,9 @@ body {
 .cardLabel {
   margin: 0;
   font-family: 'Quicksand', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: #baae9c;
 }
@@ -329,23 +314,23 @@ body {
   margin: 8px 0 0;
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  font-size: clamp(38px, 8vw, 60px);
+  font-size: clamp(44px, 7vw, 64px);
   color: var(--pill-d);
   text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
 .cardIcons {
-  margin-top: 14px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  font-size: 24px;
+  gap: 16px;
+  font-size: 28px;
   filter: drop-shadow(0 3px 6px rgba(0,0,0,0.06));
 }
 
 .nameInput {
-  padding: 16px 20px;
+  padding: 16px 24px;
   border-radius: 24px;
   border: 2px solid var(--pill-d);
   font-family: 'Quicksand';
@@ -353,34 +338,19 @@ body {
   text-align: center;
   font-size: 16px;
   width: min(320px, 85vw);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 10px 25px rgba(168, 107, 125, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 25px rgba(168, 107, 125, 0.08), inset 0 2px 4px rgba(0,0,0,0.03);
   outline: none;
   transition: all 0.3s ease;
 }
 
 .nameInput:focus {
   background: #fff;
-  box-shadow: 0 10px 30px rgba(168, 107, 125, 0.15);
+  box-shadow: 0 10px 30px rgba(168, 107, 125, 0.15), inset 0 1px 2px rgba(0,0,0,0.02);
+  transform: translateY(-1px);
 }
 
 .nameInput.wrong { border-color: #e0a6a6; animation: shake .4s ease; }
-
-.unlockBtn {
-  padding: 14px 32px;
-  border-radius: 999px;
-  background: var(--pill);
-  color: #fff;
-  border: 2px solid var(--pill-d);
-  font-family: 'Quicksand';
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px 16px rgba(168, 107, 125, 0.25);
-  transition: transform 0.1s ease;
-}
-
-.unlockBtn:active { transform: scale(0.96); }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0) }
@@ -393,39 +363,36 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 2px solid var(--pill-d);
   background: #fff;
   color: var(--pill-d);
-  font-size: 20px;
+  font-size: 18px;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
   z-index: 30;
 }
 
-/* 📱 Responsive Mobile Overrides */
-@media (max-width: 768px) {
-  .wrap { padding: 10px; }
+/* 📱 Mobile Styling */
+@media (max-width: 700px) {
   .stage {
     grid-template-columns: 1fr;
-    max-height: none;
     height: auto;
-    padding: 20px 16px 30px;
-    gap: 20px;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 26px 22px;
+    gap: 22px;
     transform: none;
-    margin: 10px 0 60px 0;
   }
   .right-picture { order: -1; }
-  .avatar { height: 260px; }
-  .avatarFrame { width: 100%; max-width: 320px; margin: 0 auto; }
-  #prevBtn { left: -10px; }
-  #nextBtn { right: -10px; }
-  .left-letter p { max-height: 280px; }
-  .signature { position: relative; right: 0; bottom: 0; margin-top: 15px; text-align: right; }
+  .avatarFrame { width: min(320px, 88vw); margin: 0 auto; }
+  #prevBtn { left: -8px; }
+  #nextBtn { right: -8px; }
+  .titleCard { padding: 36px 32px; }
 }
 </style>
 </head>
@@ -440,7 +407,6 @@ body {
     </div>
 
     <input class="nameInput" id="nameInput" type="password" placeholder="Type password here..." autocomplete="off" />
-    <button class="unlockBtn" id="unlockBtn">Open Letter ✨</button>
   </div>
 </div>
 
@@ -451,7 +417,6 @@ body {
       <button class="replayBtn" id="replayBtn" title="Read again">↻</button>
       <h2 id="typeTitle"></h2>
       <p id="typeBody"></p>
-      <p class="signature" id="signature">Yours lovingly,<br>BSDK (Ronnie)</p>
     </div>
 
     <div class="right-picture">
@@ -464,14 +429,16 @@ body {
       <div class="galleryCount" id="galleryCount"></div>
     </div>
 
+    <p class="signature" id="signature">Yours lovingly,<br>BSDK (Ronnie)</p>
+
   </div>
 </div>
 
 <div id="sparkLayer"></div>
 <button class="audioToggle" id="audioToggle" title="Mute/unmute music">🔊</button>
 
-<audio id="bgm" loop preload="auto">
-  <!-- Audio sources -->
+<audio id="bgm" loop>
+  <!-- add audio.mp3 (or .wav / .ogg / .m4a) to the repo -->
 </audio>
 
 <script>
@@ -480,7 +447,7 @@ const CONFIG = {
 
   imageExts: ["jpg", "jpeg", "png", "webp"],
   videoExts: ["mp4", "webm", "mov"],
-  audioExts: ["mp3", "mpeg", "wav", "ogg", "m4a"],
+  audioExts: ["mpeg", "mp3", "wav", "ogg", "m4a"],
   audioBase: "audio",
 
   staticTitle: "🌸 For my sister / friend... I miss you deeply. 🌸",
@@ -513,6 +480,7 @@ Nannu Ksheminchu Amulya😭 Chances ichav chalane. Ee annaya kosam inkoka chance
 
 Okavela kalsedhi emaina unte BSDK ani oka msg pettu chalu 🙈`,
 
+  /* All 14 photos + 4 videos live in one side gallery, in this order */
   galleryItems: [
     { type: "image", id: "1" },
     { type: "image", id: "2" },
@@ -534,7 +502,7 @@ Okavela kalsedhi emaina unte BSDK ani oka msg pettu chalu 🙈`,
     { type: "video", id: "44" }
   ],
 
-  spawnIntervalMs: 350,
+  spawnIntervalMs: 250,
   sparkSet: ["✨", "🦋", "👸", "🌟", "💫", "🌸", "🌷", "👑", "🌼", "💕"]
 };
 
@@ -543,19 +511,11 @@ let activeTypers = new WeakMap();
 function typewrite(el, text, speed=28, done){
   if (activeTypers.has(el)) clearInterval(activeTypers.get(el));
   el.textContent=''; let i=0;
-  const t=setInterval(()=>{ 
-    el.textContent+= text[i++] || ''; 
-    el.scrollTop = el.scrollHeight;
-    if(i>text.length){
-      clearInterval(t); 
-      activeTypers.delete(el); 
-      done&&done();
-    }
-  }, speed);
+  const t=setInterval(()=>{ el.textContent+= text[i++] || ''; if(i>text.length){clearInterval(t); activeTypers.delete(el); done&&done();}}, speed);
   activeTypers.set(el, t);
 }
 
-/* ===== Falling Emoji Animation ===== */
+/* ===== Elegant Falling Garden System ===== */
 const sparkLayer = document.getElementById('sparkLayer');
 
 function createFallingEmoji(customX = null, customY = null, isExplosion = false) {
@@ -564,10 +524,10 @@ function createFallingEmoji(customX = null, customY = null, isExplosion = false)
   el.textContent = CONFIG.sparkSet[Math.floor(Math.random() * CONFIG.sparkSet.length)];
 
   const scale = 0.5 + Math.random() * 1.2;
-  const size = (16 + Math.random() * 14) * scale;
+  const size = (16 + Math.random() * 16) * scale;
   el.style.fontSize = `${size}px`;
 
-  const swayRange = (40 + Math.random() * 60) * (Math.random() > 0.5 ? 1 : -1);
+  const swayRange = (40 + Math.random() * 80) * (Math.random() > 0.5 ? 1 : -1);
   const totalRotation = (90 + Math.random() * 180) * (Math.random() > 0.5 ? 1 : -1);
   el.style.setProperty('--sway', `${swayRange}px`);
   el.style.setProperty('--rotation', `${totalRotation}deg`);
@@ -600,24 +560,19 @@ setInterval(() => { createFallingEmoji(); }, CONFIG.spawnIntervalMs);
 function triggerUnlockExplosion() {
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-  for (let i = 0; i < 30; i++) { createFallingEmoji(centerX, centerY, true); }
+  for (let i = 0; i < 40; i++) { createFallingEmoji(centerX, centerY, true); }
 }
 
-/* Touch & Mouse movement interaction */
 let lastMove = 0;
-const handleMove = (e) => {
+window.addEventListener('mousemove', (e) => {
   const now = Date.now();
-  if (now - lastMove < 150) return;
+  if (now - lastMove < 120) return;
   lastMove = now;
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const percentageX = (clientX / window.innerWidth) * 100;
+  const percentageX = (e.clientX / window.innerWidth) * 100;
   createFallingEmoji(percentageX, -10);
-};
+});
 
-window.addEventListener('mousemove', handleMove);
-window.addEventListener('touchmove', handleMove, { passive: true });
-
-/* ===== Gallery Handler ===== */
+/* ===== Photo / Video Gallery ===== */
 const avatar = document.getElementById('avatar');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -681,11 +636,10 @@ function updateGallery(index){
   nextBtn.disabled = index === CONFIG.galleryItems.length - 1;
   galleryCount.textContent = `${index + 1} / ${CONFIG.galleryItems.length}`;
 }
-
 prevBtn.addEventListener('click', ()=>{ if(currentSlide>0){ currentSlide--; updateGallery(currentSlide); } });
 nextBtn.addEventListener('click', ()=>{ if(currentSlide<CONFIG.galleryItems.length-1){ currentSlide++; updateGallery(currentSlide); } });
 
-/* ===== Letter Sequence ===== */
+/* ===== Letter sequence ===== */
 const typeTitle = document.getElementById('typeTitle');
 const typeBody = document.getElementById('typeBody');
 const signature = document.getElementById('signature');
@@ -701,7 +655,7 @@ function playLetter(){
 
 document.getElementById('replayBtn').addEventListener('click', playLetter);
 
-/* ===== Background Audio Setup & Unlocking ===== */
+/* ===== Background audio ===== */
 const bgm = document.getElementById('bgm');
 CONFIG.audioExts.forEach(ext => {
   const src = document.createElement('source');
@@ -709,52 +663,31 @@ CONFIG.audioExts.forEach(ext => {
   bgm.appendChild(src);
 });
 bgm.load();
-
 const audioToggle = document.getElementById('audioToggle');
-let isAudioPlaying = false;
+audioToggle.addEventListener('click', () => {
+  if (bgm.paused) { bgm.play().catch(()=>{}); audioToggle.textContent = "🔊"; }
+  else { bgm.pause(); audioToggle.textContent = "🔇"; }
+});
 
-function toggleAudio() {
-  if (bgm.paused) { 
-    bgm.play().then(() => {
-      audioToggle.textContent = "🔊";
-      isAudioPlaying = true;
-    }).catch(err => {
-      console.log("Audio play gesture required on mobile", err);
-    });
-  } else { 
-    bgm.pause(); 
-    audioToggle.textContent = "🔇"; 
-    isAudioPlaying = false;
-  }
-}
-
-audioToggle.addEventListener('click', toggleAudio);
-
-/* ===== Password & Gate Handler ===== */
+/* ===== Password Gate Logic Handler ===== */
 const gate = document.getElementById('gate');
 const nameInput = document.getElementById('nameInput');
-const unlockBtn = document.getElementById('unlockBtn');
 const scene = document.getElementById('scene');
 
-function checkPassword() {
+nameInput.addEventListener('keydown', (e)=>{
+  if(e.key !== "Enter") return;
   const v = (nameInput.value || '').trim().toLowerCase();
 
   if(v === CONFIG.unlockWord.toLowerCase()){
     nameInput.disabled = true;
     updateGallery(currentSlide);
 
-    // Audio trigger on touch / click event for mobile web compatibility
-    bgm.play().then(() => {
-      audioToggle.textContent = "🔊";
-      isAudioPlaying = true;
-    }).catch(err => {
-      console.log("Audio waiting for explicit touch interaction:", err);
-    });
+    bgm.play().catch(err => console.log("Audio play gesture required"));
 
     triggerUnlockExplosion();
 
     gate.style.transition = "all .6s cubic-bezier(0.4, 0, 0.2, 1)";
-    gate.style.opacity = '0';
+    gate.style.opacity = 0;
     gate.style.transform = "scale(0.95)";
 
     setTimeout(()=>{
@@ -769,11 +702,6 @@ function checkPassword() {
     nameInput.classList.add('wrong');
     nameInput.value = "";
   }
-}
-
-unlockBtn.addEventListener('click', checkPassword);
-nameInput.addEventListener('keydown', (e)=>{
-  if(e.key === "Enter") checkPassword();
 });
 </script>
 </body>
